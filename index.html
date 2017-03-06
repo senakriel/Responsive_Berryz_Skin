@@ -4,6 +4,7 @@
     <title>베리즈</title>
 </head>
 <body>
+    </div>
     <div class="main">
         <div class="container">
             <div class="top">
@@ -16,13 +17,8 @@
                     </button>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="/">Home<span class="sr-only">(current)</span></a></li>
-                            <li>
-                                <div name="remove_code">
-                                    <script type="text/javascript">
-                                        document.write("<a href=\"http://" + location.host + "/_skin/html/manual.html\">Manual</a>");
-                                    </script>
-                                </div>
+                            <li onclick=";">Home<span class="sr-only">(current)</span></li>
+                            <li id="manual">
                             </li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Plugin<span class="caret"></span></a>
@@ -34,12 +30,7 @@
                                     <li onclick=";">Image Viewer</li>
                                 </ul>
                             </li>
-                            <li>
-                                <div name="remove_code">
-                                    <script type="text/javascript">
-                                        document.write("<a href=\"http://" + location.host + "/_skin/html/setting.html\">Setting</a>");
-                                    </script>
-                                </div>
+                            <li id="setting">
                             </li>
                         </ul>
                     </div>
@@ -52,10 +43,9 @@
 
         </div>
     </div>
-    <div name="remove_code">
         <script type="text/javascript">
-            document.getElementsByName("remove_code").innerHTML = "";
+            document.getElementById('manual').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/manual.html\';\">Manual</li>";
+            document.getElementById('setting').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/setting.html\';\">Setting</li>";
         </script>
-    </div>
 </body>
 </html>
