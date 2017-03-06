@@ -18,9 +18,11 @@
                         <ul class="nav navbar-nav">
                             <li><a href="/">Home<span class="sr-only">(current)</span></a></li>
                             <li>
-                                <script type="text/javascript" name="remove_code">
-                                    document.write("<a href=\"http://" + location.host + "/_skin/html/manual.html\">Manual</a>");
-                                </script>
+                                <div name="remove_code">
+                                    <script type="text/javascript">
+                                        document.write("<a href=\"http://" + location.host + "/_skin/html/manual.html\">Manual</a>");
+                                    </script>
+                                </div>
                             </li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Plugin<span class="caret"></span></a>
@@ -33,9 +35,11 @@
                                 </ul>
                             </li>
                             <li>
-                                <script type="text/javascript" name="remove_code">
-                                    document.write("<a href=\"http://" + location.host + "/_skin/html/setting.html\">Setting</a>");
-                                </script>
+                                <div name="remove_code">
+                                    <script type="text/javascript">
+                                        document.write("<a href=\"http://" + location.host + "/_skin/html/setting.html\">Setting</a>");
+                                    </script>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -48,8 +52,10 @@
 
         </div>
     </div>
-    <script type="text/javascript" name="remove_code">
-        document.getElementsByName("remove_code").innerHTML = "";
-    </script>
+    <div name="remove_code">
+        <script type="text/javascript">
+            document.getElementsByName("remove_code").innerHTML = "";
+        </script>
+    </div>
 </body>
 </html>
