@@ -27,7 +27,7 @@ FTP 서버 구축에 관한 자료는 [이쪽](http://senakriel.tistory.com/cate
 
 ##적용 방법
 1. Github 메뉴의 `Clone or download` -> `Download ZIP`을 클릭하거나, [`Releases`](https://github.com/senakriel/Responsive_Berryz_Skin/releases) 된 스킨파일을 선택하여 파일을 저장합니다.
-2. 다운로드 된 압축파일의 내용을 `.\WebShare0.952Rev1187\Skin\Responsive_Berryz_Skin`과 같은 방식으로 디렉토리에 복사한다.
+2. 다운로드 된 압축파일의 내용을 `.\WebShare0.952Rev1187\Skin\Responsive_Berryz_Skin`과 같은 방식으로 디렉토리에 복사합니다.
 3. 베리즈 웹쉐어를 실행하여 `환경설정` -> `스킨` 탭에서 방금 추가한 `Responsive_Berryz_Skin` 항목을 선택하고 확인을 클릭합니다.
 
 ##개발 환경
@@ -35,7 +35,7 @@ FTP 서버 구축에 관한 자료는 [이쪽](http://senakriel.tistory.com/cate
 * `Chrome browser`
 
 ##사용 언어
-* `Berryz Webshare Skin Markup` - [Wiki](https://github.com/senakriel/Responsive_Berryz_Skin/wiki) 참조
+* `Berryz Webshare Skin Markup` - [Wiki](https://github.com/senakriel/Responsive_Berryz_Skin/wiki/Berryz-Webshare-Skin-Markup) 참조
 * `HTML5`, `CSS3`, `Javascript`
 
 문의 사항은 `senakriel@gmail.com`으로 연락해 주세요.
