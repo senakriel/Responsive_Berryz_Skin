@@ -2,12 +2,19 @@
 <html>
 <head>
     <title>베리즈</title>
+
+    <script type="text/javascript">
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/userdata.js\"><\/script>");
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/setting.js\"><\/script>");
+    </script>
+
 </head>
 <body>
-    </div>
+    <!-- 메뉴와 파일을 표시할 부분 start -->
     <div class="main">
         <div class="container">
             <div class="top">
+                <!-- 네비게이션바 start -->
                 <nav class="navbar navbar-default menu">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span>
@@ -33,17 +40,34 @@
                         </ul>
                     </div>
                 </nav>
+                <!-- 네비게이션바 end -->
+
+
             </div>
         </div>
     </div>
+    <!-- 메뉴와 파일을 표시할 부분 end -->
+    <!-- 프로필과 홈페이지 정보를 표시할 부분 start -->
     <div class="extra">
         <div class="container">
-
+            <!-- 프로필 start -->
+            <div class="content-top">
+                <div class="top-grid-in">
+                    <div class="grid">
+                        <div id="profile"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 프로필 end -->
         </div>
-    </div>
+        <!-- 프로필과 홈페이지 정보를 표시할 부분 end -->
+        <!-- 페이지 로딩이 끝나고 처리할 스크립트 start -->
         <script type="text/javascript">
             document.getElementById('manual').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/manual.html\';\">Manual</li>";
             document.getElementById('setting').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/setting.html\';\">Setting</li>";
+
+            getProfile();
         </script>
+        <!-- 페이지 로딩이 끝나고 처리할 스크립트 end -->
 </body>
 </html>
