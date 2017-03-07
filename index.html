@@ -1,13 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>베리즈</title>
-
-    <script type="text/javascript">
+    <script type="text/javascript" id="remove_basic_setting">
         document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/userdata.js\"><\/script>");
         document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/setting.js\"><\/script>");
     </script>
 
+    <script type="text/javascript" id="remove_page_setting">
+        setSkinData();
+        setMetaData();
+        setThemeColorWithIcon();
+        setCSS();
+    </script>
 </head>
 <body>
     <noscript><div class="noscript">JavaScript가 꺼져 있습니다. 대부분의 기능을 사용할 수 없습니다.</div></noscript>
@@ -23,6 +27,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+
+                    <script type="text/javascript" id="remove_get_logo">
+                            getLogo();
+                    </script>
+
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li onclick="location.href='/';">Home<span class="sr-only">(current)</span></li>
@@ -105,9 +114,16 @@
     <!-- 프로필과 홈페이지 정보를 표시할 부분 end -->
     <!-- 페이지 로딩이 끝나고 처리할 스크립트 start -->
     <script type="text/javascript">
+        document.getElementById('remove_basic_setting').outerHTML = "";
+        document.getElementById('remove_page_setting').outerHTML = "";
+        document.getElementById('remove_get_logo').outerHTML = "";
+
+
+
         document.getElementById('manual').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/manual.html\';\">Manual</li>";
         document.getElementById('setting').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/setting.html\';\">Setting</li>";
 
+        getLogo();
         getProfile();
         setPageInfo();
     </script>
