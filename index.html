@@ -112,11 +112,11 @@
                                                     document.write("<label class=\"checkbox\"><input type='checkbox' name=\"checkbox#$link\" value=\"$link\" onclick='HighlightRow(\"$link\", this.checked)' /><i></i></label>\n");
                                                     document.write("</td>\n");
                                                     document.write("<td class=\"name meiryo\">\n");
-                                                    document.write("<a href='$link'>" + folderName + "</a>\n");
+                                                    document.write("<a href=\"$link\"><div style=\"padding: 24px 0 22px;\">" + folderName + "</div></a>\n");
                                                     document.write("</td>\n");
                                                     document.write("<td class=\"size font-size11\" id=\"cvtsize[]\"></td>\n");
                                                     document.write("<td class=\"st\"></td>\n");
-                                                    document.write("<td class=\"mobileMp3\"></td>\n");
+                                                    document.write("<td class=\"mobileMp3\"></td>\n");``
                                                     document.write("</tr>\n");
                                                 }
                                             } hideFolder();
@@ -127,116 +127,63 @@
                                         <td class="checkbox" align="center">
                                             <label class="checkbox"><input type='checkbox' name="checkbox#$link" value="$link" onclick='HighlightRow("$link", this.checked)' /><i></i></label>
                                         </td>
-                                        <td class="name meiryo" style="padding-right:10px;">
-                                            <a href="$link">$name</a>
-                                        </td>
+                                            <td class="name meiryo" style="padding-right:10px;">
+                                                <a href="$link"><div style="padding: 24px 0 22px;">
+                                                        $name
+                                                    </div></a>
+                                            </td>
                                         <td class="size" id="cvtsize[]">
                                             $size
                                         </td>
                                         <script type="text/javascript">
                                             var linkLocation = '$link';
-                                            var isMp4 = linkLocation.lastIndexOf('.mp4') + linkLocation.lastIndexOf('.MP4');
-                                            var isNotMp4 = linkLocation.lastIndexOf('mp4.') + linkLocation.lastIndexOf('MP4.');
-                                            var isMp3 = linkLocation.lastIndexOf('.mp3') + linkLocation.lastIndexOf('.MP3');
-                                            var isNotMp3 = linkLocation.lastIndexOf('mp3.') + linkLocation.lastIndexOf('MP3.');
-                                            var isImg = linkLocation.lastIndexOf('.jpg') + linkLocation.lastIndexOf('.bmp') + linkLocation.lastIndexOf('.png') + linkLocation.lastIndexOf('.gif') + linkLocation.lastIndexOf('.JPG') + linkLocation.lastIndexOf('.BMP') + linkLocation.lastIndexOf('.PNG') + linkLocation.lastIndexOf('.GIF');
+                                            var fileType = getExtensionOfFilename(linkLocation);
 
-                                            if (isMp4 > -2 && isNotMp4 < -1) {
-                                                mp4List[l] = '$link';
-                                                mp4List[l] = mp4List[l].replace(/%2d/g, '-');
-                                                l++;
-                                                function openMp4Player(now, isPlugin) {
-                                                    var j = 0;
+                                            switch (fileType) {
+                                                case ".mp4":
+                                                    mp4List[mp4Counter] = '$link';
+                                                    mp4List[mp4Counter] = mp4List[mp4Counter].replace(/%2d/g, '-');
+                                                    mp4Counter++;
 
-                                                    for (j = 0; j < 10000; j++) {
-                                                        localStorage.removeItem("mp4[" + j + "]");
+                                                    var isListStart = "false";
+
+                                                    if (localStorage.getItem('mp4PlayerListOn') != null) {
+                                                        isListStart = "true";
                                                     }
-                                                    for (j = 0; j < l; j++) {
-                                                        localStorage.setItem("mp4[" + j + "]", mp4List[j]);
-                                                    }
-                                                    if (isPlugin == "true") {
-                                                        window.open("http://" + location.host + "/_skin/html/mp4Player.html?now=" + now + "&isPlugin=true&lSize=" + l + "&local=" + location.href, '_blank', 'width=908,height=420,toolbar=no,status=no');
+                                                    document.write("<td class='st mp4 ply' width='50px' onclick=\"openMp4Player(" + mp4Counter + ", " + isListStart + ")\"><center><span>▶</span></center></td><td class='mobileMp3'></td>");
+                                                    
+                                                    break;
+                                                case ".mp3":
+                                                    mp3Url = location.href + '$link'
+                                                    mp3Url = mp3Url.replace(/%2d/g, '-');
+                                                    mp3List[mp3Counter] = '$link';
+                                                    mp3List[mp3Counter] = mp3List[mp3Counter].replace(/%2d/g, '-');
+                                                    mp3Counter++;
+
+                                                    if (localStorage.getItem('mp3PlayerStartOn') != null) {
+                                                        document.write("<td class='st mp4 ply' width='50px' onclick=\"audio.pause(); openMp3Player()\"><center><span>♬</span></center></td>");
                                                     }
                                                     else {
-                                                        window.open("http://" + location.host + "/_skin/html/mp4Player.html?now=" + now + "&isPlugin=false&lSize=" + l + "&local=" + location.href, '_blank', 'width=800,height=450,toolbar=no,status=no');
+                                                        document.write("<td class='st mp4 ply' width='50px' onclick=\"playPause('" + mp3Url + "')\"><center><span>♬</span></center></td>");
                                                     }
-                                                }
-                                                if (localStorage.getItem('mp4PlayerListOn') != null) {
-                                                    document.write("<td class='st mp4 ply' width='50px' onclick=\"openMp4Player(" + l + ", 'true')\"><center><span>▶</span></center></td><td class='mobileMp3'></td>");
-                                                }
-                                                else {
-                                                    document.write("<td class='st mp4 ply' width='50px' onclick=\"openMp4Player(" + l + ", 'false')\"><center><span>▶</span></center></td><td class='mobileMp3'></td>");
-                                                }
 
-                                            }
-                                            else if (isMp3 > -2 && isNotMp3 < -1) {
-                                                mp3Url = location.href + '$link'
-                                                mp3Url = mp3Url.replace(/%2d/g, '-');
-                                                mp3List[k] = '$link';
-                                                mp3List[k] = mp3List[k].replace(/%2d/g, '-');
-                                                k++;
-                                                function openMp3Player() {
-                                                    var j = 0;
+                                                    document.write("<td class='mobileMp3Bg mobileMp3 ply' width='50px' onclick=\"playPause('" + mp3Url + "')\"><center><span><font size='4'>♬</font></span></center></td>");
 
-                                                    for (j = 0; j < 10000; j++) {
-                                                        localStorage.removeItem("mp3[" + j + "]");
-                                                    }
-                                                    for (j = 0; j < k; j++) {
-                                                        localStorage.setItem("mp3[" + j + "]", mp3List[j]);
-                                                    }
-                                                    for (j = 0; j < 3; j++) {
-                                                        localStorage.setItem("mp3Bg[" + j + "]", "http://" + location.host + "/_skin/images/mp3Bg" + (j + 1) + ".gif");
-                                                    }
-                                                    window.open("http://" + location.host + "/_skin/html/mp3Player.html?kSize=" + k + "&local=" + location.href + "&bgImg=" + imgList[0], '_blank', 'width=460,height=460,status=no,resizable=yes,scrollbars=yes');
-                                                }
-                                                function playPause(url) {
-                                                    if (audio.src == url) {
-                                                        if (isPlay == 0) {
-                                                            audio.play();
-                                                            isPlay = 1;
-                                                        }
-                                                        else {
-                                                            audio.pause();
-                                                            isPlay = 0;
-                                                        }
-                                                    }
-                                                    else {
-                                                        audio.src = url;
-                                                        audio.play();
-                                                        isPlay = 1;
-                                                    }
-                                                }
-                                                if (localStorage.getItem('mp3PlayerStartOn') != null) {
-                                                    document.write("<td class='st mp4 ply' width='50px' onclick=\"audio.pause(); openMp3Player()\"><center><span>♬</span></center></td>");
-                                                }
-                                                else {
-                                                    document.write("<td class='st mp4 ply' width='50px' onclick=\"playPause('" + mp3Url + "')\"><center><span>♬</span></center></td>");
-                                                }
-                                                document.write("<td class='mobileMp3Bg mobileMp3 ply' width='50px' onclick=\"playPause('" + mp3Url + "')\"><center><span><font size='4'>♬</font></span></center></td>");
-                                            }
-                                            else if (isImg > -8) {
-                                                imgList[i] = '$link';
-                                                imgList[i] = imgList[i].replace(/%2d/g, '-');
-                                                i++;
-                                                function openViewer(now) {
-                                                    var j = 0;
-                                                    for (j = 0; j < 10000; j++) {
-                                                        localStorage.removeItem("img[" + j + "]");
-                                                    }
-                                                    for (j = 0; j < i; j++) {
-                                                        localStorage.setItem("img[" + j + "]", imgList[j]);
-                                                    }
-                                                    if (now == 0 && localStorage.getItem('imgFullLoadOn') == null) {
-                                                        now = 1;
-                                                    }
-                                                    window.open("http://" + location.host + "/_skin/html/imageViewer.html?now=" + now + "&iSize=" + i + "&local=" + location.href, '_blank', 'width=460,height=800,status=no,resizable=yes,scrollbars=yes');
+                                                    break;
+                                                case ".jpg":
+                                                case ".bmp":
+                                                case ".png":
+                                                case ".gif":
+                                                    imgList[imgCounter] = '$link';
+                                                    imgList[imgCounter] = imgList[imgCounter].replace(/%2d/g, '-');
+                                                    imgCounter++;
 
-                                                }
-                                                document.write("<td class='st mp4 ply' width='50px' onclick=\"openViewer(" + i + ");\"><center><span>✿</span></center></td>");
-                                                document.write("<td class='mobileMp3Bg mobileMp3 ply' width='50px' onclick=\"openViewer(" + i + ")\"><center><span>✿</span></center></td>");
-                                            }
-                                            else {
-                                                document.write("<td class='st' width='50px'></td><td class='mobileMp3'></td>");
+                                                    document.write("<td class='st mp4 ply' width='50px' onclick=\"openViewer(" + imgCounter + ");\"><center><span>✿</span></center></td>");
+                                                    document.write("<td class='mobileMp3Bg mobileMp3 ply' width='50px' onclick=\"openViewer(" + imgCounter + ")\"><center><span>✿</span></center></td>");
+                                                    break;
+                                                default:
+                                                    document.write("<td class='st' width='50px'></td><td class='mobileMp3'></td>");
+                                                    break;
                                             }
                                         </script>
                                     </tr>
