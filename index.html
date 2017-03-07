@@ -114,8 +114,8 @@
                                                         document.write("<td class=\"checkbox\" align=\"center\">\n");
                                                         document.write("<label class=\"checkbox\"><input type='checkbox' name=\"checkbox#$link\" value=\"$link\" onclick='HighlightRow(\"$link\", this.checked)' /><i></i></label>\n");
                                                         document.write("</td>\n");
-                                                        document.write("<td class=\"name meiryo\" onclick=\"location.href='$link'\">\n");
-                                                        document.write(folderName + "\n");
+                                                        document.write("<td class=\"name meiryo\">\n");
+                                                        document.write("<a href='$link'>" + folderName + "</a>\n");
                                                         document.write("</td>\n");
                                                         document.write("<td class=\"size font-size11\" id=\"cvtsize[]\"></td>\n");
                                                         document.write("<td class=\"st\"></td>\n");
@@ -130,8 +130,8 @@
                                             <td class="checkbox" align="center">
                                                 <label class="checkbox"><input type='checkbox' name="checkbox#$link" value="$link" onclick='HighlightRow("$link", this.checked)' /><i></i></label>
                                             </td>
-                                            <td class="name meiryo" onclick="location.href='$link'" style="padding-right:10px;">
-                                                $name
+                                            <td class="name meiryo" style="padding-right:10px;">
+                                                <a href="$link">$name</a>
                                             </td>
                                             <td class="size" id="cvtsize[]">
                                                 $size
@@ -326,9 +326,6 @@
         document.getElementById('remove_basic_setting').outerHTML = "";
         document.getElementById('remove_page_setting').outerHTML = "";
         document.getElementById('remove_get_logo').outerHTML = "";
-        //document.getElementById('remove_file_list').outerHTML = "";
-
-
 
         document.getElementById('manual').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/manual.html\';\">Manual</li>";
         document.getElementById('setting').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/setting.html\';\">Setting</li>";
