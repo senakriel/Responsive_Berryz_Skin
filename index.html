@@ -59,15 +59,57 @@
                 </div>
             </div>
             <!-- 프로필 end -->
+            <!-- 홈페이지 설명 start -->
+            <div class="about">
+                <div class="col-md-4 about-in ex1">
+                    <div class="about-detail">
+                        <h4>ABOUT</h4>
+                        <span id="title">&nbsp;&nbsp;&nbsp;“베리즈 웹쉐어”</span> << 홈페이지 이름 넣기
+                    </div>
+                    <p>
+                        이 홈페이지는 <a href="http://berryz.upnl.org/main.php/WebShare/LegalNotice/" target="_blank">Berryz WebShare</a>를 통해 구현된 개인 클라우드 공간입니다.
+                    </p>
+                    <p>
+                        본 홈페이지의 스킨은 <a href="https://github.com/senakriel" target="_blank">Senakriel</a>의 <a href="https://github.com/senakriel/Responsive_Berryz_Skin" target="_blank">Responsive_Berryz_Skin Project</a>를 통해 제공되었습니다. 자세한 사항은  <a href="https://github.com/senakriel/Responsive_Berryz_Skin/blob/master/README.md" target="_blank">README.md</a> 파일을 참고하세요.
+                    </p>
+                </div>
+                <div class="col-md-4 about-in ex2">
+                    <div class="about-detail">
+                        <h4>STREAMING</h4>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“동영상 스트리밍”</span>
+                    </div>
+                    <p>
+                        <b>Windows</b> - 'ASX Streaming' 플러그인을 사용하면 해당 동영상을 확장자에 구애받지 않고 스트리밍으로 감상할 수 있습니다. mp4 파일의 경우 파일 우측에 표시되는 재생 버튼을 클릭하여, JW Player를 통해 영상을 감상하실 수도 있습니다.(자막이 표시되지 않을 경우 하단의 cc버튼을 눌러 주세요.)
+                    </p>
+                    <p>
+                        <b>Android</b> - <a href="https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad&hl=ko" target="_blank">MX Player</a>와 같은 동영상 재생 어플리케이션을 사용하시면 플러그인을 사용하지 않고 동영상을 스트리밍으로 감상하실 수 있습니다.
+                    </p>
+                    <p>
+                        <b>iPhone</b> - 기본 동영상 플레이어를 통하여 플러그인을 사용하지 않고 동영상을 스트리밍으로 감상하실 수 있습니다.(자막 미지원)
+                    </p>
+                </div>
+                <div class="col-md-4 about-in ex3">
+                    <div class="about-detail">
+                        <h4>LINKS</h4>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“외부 고리”</span>
+                    </div>
+                    <p id="facebook"></p>
+                    <p id="blog"></p>
+                    <p id="email"></p>
+                </div>
+            </div>
+            <!-- 홈페이지 설명 end -->
         </div>
-        <!-- 프로필과 홈페이지 정보를 표시할 부분 end -->
-        <!-- 페이지 로딩이 끝나고 처리할 스크립트 start -->
-        <script type="text/javascript">
-            document.getElementById('manual').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/manual.html\';\">Manual</li>";
-            document.getElementById('setting').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/setting.html\';\">Setting</li>";
+    </div>
+    <!-- 프로필과 홈페이지 정보를 표시할 부분 end -->
+    <!-- 페이지 로딩이 끝나고 처리할 스크립트 start -->
+    <script type="text/javascript">
+        document.getElementById('manual').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/manual.html\';\">Manual</li>";
+        document.getElementById('setting').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/setting.html\';\">Setting</li>";
 
-            getProfile();
-        </script>
-        <!-- 페이지 로딩이 끝나고 처리할 스크립트 end -->
+        getProfile();
+        setPageInfo();
+    </script>
+    <!-- 페이지 로딩이 끝나고 처리할 스크립트 end -->
 </body>
 </html>
