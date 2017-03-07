@@ -9,10 +9,7 @@
     </script>
 
     <script type="text/javascript" id="remove_page_setting">
-        setSkinData();
-        setMetaData();
-        setThemeColorWithIcon();
-        setCSS();
+        startSideSetting();
     </script>
 </head>
 <body>
@@ -23,29 +20,29 @@
             <div class="top">
                 <!-- 네비게이션바 start -->
                 <nav class="navbar navbar-default menu">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <script type="text/javascript" id="remove_get_logo">
-                        getLogo();
-                    </script>
-
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <script type="text/javascript" id="remove_get_logo">
+                            getLogo();
+                        </script>
+                    </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li onclick="location.href='/';">Home<span class="sr-only">(current)</span></li>
+                            <li><a href="/">Home<span class="sr-only">(current)</span></a></li>
                             <li id="manual"></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Plugin<span class="caret"></span></a>
                                 <ul class="dropdown-menu menu-at" role="menu">
-                                    <li onclick="OnPlugin('playlist.asx');">ASX Streaming</li>
-                                    <li onclick="OnPlugin('RARdownload');">RAR Download</li>
-                                    <li onclick=";">Mp3 Player</li>
-                                    <li onclick=";">Mp4 Player</li>
-                                    <li onclick=";">Image Viewer</li>
+                                    <li onclick="OnPlugin('playlist.asx');"><a href="#">ASX Streaming</a></li>
+                                    <li onclick="OnPlugin('RARdownload');"><a href="#">RAR Download</a></li>
+                                    <li onclick="openMp3Player();"><a href="#">Mp3 Player</a></li>
+                                    <li onclick="openMp4Player(1, 'true');"><a href="#">Mp4 Player</a></li>
+                                    <li onclick="openViewer(0);"><a href="#">Image Viewer</a></li>
                                 </ul>
                             </li>
                             <li id="setting"></li>
@@ -91,177 +88,174 @@
                                         <th class="mobileMp3"></th>
                                     </tr>
                                 </thead>
-                                    <tbody>
-                                        #foreach( $files ) #if ( $is_folder )
-                                        <div name="dropScript">
-                                            <script type="text/javascript">
-                                                function hideFolder() {
-                                                    var folderName = "$name";
-                                                    var isHideFolder = false;
+                                <tbody>
+                                    #foreach( $files ) #if ( $is_folder )
+                                    <div name="dropScript">
+                                        <script type="text/javascript">
+                                            function hideFolder() {
+                                                var folderName = "$name";
+                                                var isHideFolder = false;
 
-                                                    if (folderName.indexOf("_") == 0) {
-                                                        isHideFolder = true;
-                                                    }
-                                                    else if (folderName.indexOf(hideKey) == 0) {
-                                                        if (localStorage.getItem('adminKey') == adminKey && localStorage.getItem('adminKeyOn') != null)
-                                                            folderName = folderName.substring(hideKey.length, folderName.length);
-                                                        else isHideFolder = true;
-                                                    }
-
-                                                    if (isHideFolder == true);
-                                                    else {
-                                                        document.write("<tr class=\"folder\">\n");
-                                                        document.write("<td class=\"checkbox\" align=\"center\">\n");
-                                                        document.write("<label class=\"checkbox\"><input type='checkbox' name=\"checkbox#$link\" value=\"$link\" onclick='HighlightRow(\"$link\", this.checked)' /><i></i></label>\n");
-                                                        document.write("</td>\n");
-                                                        document.write("<td class=\"name meiryo\">\n");
-                                                        document.write("<a href='$link'>" + folderName + "</a>\n");
-                                                        document.write("</td>\n");
-                                                        document.write("<td class=\"size font-size11\" id=\"cvtsize[]\"></td>\n");
-                                                        document.write("<td class=\"st\"></td>\n");
-                                                        document.write("<td class=\"mobileMp3\"></td>\n");
-                                                        document.write("</tr>\n");
-                                                    }
-                                                } hideFolder();
-                                            </script>
-                                        </div>
-                                        #else
-                                        <tr class="file">
-                                            <td class="checkbox" align="center">
-                                                <label class="checkbox"><input type='checkbox' name="checkbox#$link" value="$link" onclick='HighlightRow("$link", this.checked)' /><i></i></label>
-                                            </td>
-                                            <td class="name meiryo" style="padding-right:10px;">
-                                                <a href="$link">$name</a>
-                                            </td>
-                                            <td class="size" id="cvtsize[]">
-                                                $size
-                                            </td>
-                                            <script type="text/javascript">
-                                                var linkLocation = '$link';
-                                                var isMp4 = linkLocation.lastIndexOf('.mp4') + linkLocation.lastIndexOf('.MP4');
-                                                var isNotMp4 = linkLocation.lastIndexOf('mp4.') + linkLocation.lastIndexOf('MP4.');
-                                                var isMp3 = linkLocation.lastIndexOf('.mp3') + linkLocation.lastIndexOf('.MP3');
-                                                var isNotMp3 = linkLocation.lastIndexOf('mp3.') + linkLocation.lastIndexOf('MP3.');
-                                                var isImg = linkLocation.lastIndexOf('.jpg') + linkLocation.lastIndexOf('.bmp') + linkLocation.lastIndexOf('.png') + linkLocation.lastIndexOf('.gif') + linkLocation.lastIndexOf('.JPG') + linkLocation.lastIndexOf('.BMP') + linkLocation.lastIndexOf('.PNG') + linkLocation.lastIndexOf('.GIF');
-
-                                                if (isMp4 > -2 && isNotMp4 < -1) {
-                                                    mp4List[l] = '$link';
-                                                    mp4List[l] = mp4List[l].replace(/%2d/g, '-');
-                                                    l++;
-                                                    function openMp4Player(now, isPlugin) {
-                                                        var j = 0;
-
-                                                        for (j = 0; j < 10000; j++) {
-                                                            localStorage.removeItem("mp4[" + j + "]");
-                                                        }
-                                                        for (j = 0; j < l; j++) {
-                                                            localStorage.setItem("mp4[" + j + "]", mp4List[j]);
-                                                        }
-                                                        if (isPlugin == "true") {
-                                                            window.open("http://" + location.host + "/_skin/html/mp4Player.html?now=" + now + "&isPlugin=true&lSize=" + l + "&local=" + location.href, '_blank', 'width=908,height=420,toolbar=no,status=no');
-                                                        }
-                                                        else {
-                                                            window.open("http://" + location.host + "/_skin/html/mp4Player.html?now=" + now + "&isPlugin=false&lSize=" + l + "&local=" + location.href, '_blank', 'width=800,height=450,toolbar=no,status=no');
-                                                        }
-                                                    }
-                                                    if (localStorage.getItem('mp4PlayerListOn') != null) {
-                                                        document.write("<td class='st mp4 ply' width='50px' onclick=\"openMp4Player(" + l + ", 'true')\"><center><span>▶</span></center></td><td class='mobileMp3'></td>");
-                                                    }
-                                                    else {
-                                                        document.write("<td class='st mp4 ply' width='50px' onclick=\"openMp4Player(" + l + ", 'false')\"><center><span>▶</span></center></td><td class='mobileMp3'></td>");
-                                                    }
-
+                                                if (folderName.indexOf("_") == 0) {
+                                                    isHideFolder = true;
                                                 }
-                                                else if (isMp3 > -2 && isNotMp3 < -1) {
-                                                    mp3Url = location.href + '$link'
-                                                    mp3Url = mp3Url.replace(/%2d/g, '-');
-                                                    mp3List[k] = '$link';
-                                                    mp3List[k] = mp3List[k].replace(/%2d/g, '-');
-                                                    k++;
-                                                    function openMp3Player() {
-                                                        var j = 0;
+                                                else if (folderName.indexOf(hideKey) == 0) {
+                                                    if (localStorage.getItem('adminKey') == adminKey && localStorage.getItem('adminKeyOn') != null)
+                                                        folderName = folderName.substring(hideKey.length, folderName.length);
+                                                    else isHideFolder = true;
+                                                }
 
-                                                        for (j = 0; j < 10000; j++) {
-                                                            localStorage.removeItem("mp3[" + j + "]");
-                                                        }
-                                                        for (j = 0; j < k; j++) {
-                                                            localStorage.setItem("mp3[" + j + "]", mp3List[j]);
-                                                        }
-                                                        for (j = 0; j < 3; j++) {
-                                                            localStorage.setItem("mp3Bg[" + j + "]", "http://" + location.host + "/_skin/images/mp3Bg" + (j + 1) + ".gif");
-                                                        }
-                                                        window.open("http://" + location.host + "/_skin/html/mp3Player.html?kSize=" + k + "&local=" + location.href + "&bgImg=" + imgList[0], '_blank', 'width=460,height=460,status=no,resizable=yes,scrollbars=yes');
+                                                if (isHideFolder == true);
+                                                else {
+                                                    document.write("<tr class=\"folder\">\n");
+                                                    document.write("<td class=\"checkbox\" align=\"center\">\n");
+                                                    document.write("<label class=\"checkbox\"><input type='checkbox' name=\"checkbox#$link\" value=\"$link\" onclick='HighlightRow(\"$link\", this.checked)' /><i></i></label>\n");
+                                                    document.write("</td>\n");
+                                                    document.write("<td class=\"name meiryo\">\n");
+                                                    document.write("<a href='$link'>" + folderName + "</a>\n");
+                                                    document.write("</td>\n");
+                                                    document.write("<td class=\"size font-size11\" id=\"cvtsize[]\"></td>\n");
+                                                    document.write("<td class=\"st\"></td>\n");
+                                                    document.write("<td class=\"mobileMp3\"></td>\n");
+                                                    document.write("</tr>\n");
+                                                }
+                                            } hideFolder();
+                                        </script>
+                                    </div>
+                                    #else
+                                    <tr class="file">
+                                        <td class="checkbox" align="center">
+                                            <label class="checkbox"><input type='checkbox' name="checkbox#$link" value="$link" onclick='HighlightRow("$link", this.checked)' /><i></i></label>
+                                        </td>
+                                        <td class="name meiryo" style="padding-right:10px;">
+                                            <a href="$link">$name</a>
+                                        </td>
+                                        <td class="size" id="cvtsize[]">
+                                            $size
+                                        </td>
+                                        <script type="text/javascript">
+                                            var linkLocation = '$link';
+                                            var isMp4 = linkLocation.lastIndexOf('.mp4') + linkLocation.lastIndexOf('.MP4');
+                                            var isNotMp4 = linkLocation.lastIndexOf('mp4.') + linkLocation.lastIndexOf('MP4.');
+                                            var isMp3 = linkLocation.lastIndexOf('.mp3') + linkLocation.lastIndexOf('.MP3');
+                                            var isNotMp3 = linkLocation.lastIndexOf('mp3.') + linkLocation.lastIndexOf('MP3.');
+                                            var isImg = linkLocation.lastIndexOf('.jpg') + linkLocation.lastIndexOf('.bmp') + linkLocation.lastIndexOf('.png') + linkLocation.lastIndexOf('.gif') + linkLocation.lastIndexOf('.JPG') + linkLocation.lastIndexOf('.BMP') + linkLocation.lastIndexOf('.PNG') + linkLocation.lastIndexOf('.GIF');
+
+                                            if (isMp4 > -2 && isNotMp4 < -1) {
+                                                mp4List[l] = '$link';
+                                                mp4List[l] = mp4List[l].replace(/%2d/g, '-');
+                                                l++;
+                                                function openMp4Player(now, isPlugin) {
+                                                    var j = 0;
+
+                                                    for (j = 0; j < 10000; j++) {
+                                                        localStorage.removeItem("mp4[" + j + "]");
                                                     }
-                                                    function playPause(url) {
-                                                        if (audio.src == url) {
-                                                            if (isPlay == 0) {
-                                                                audio.play();
-                                                                isPlay = 1;
-                                                            }
-                                                            else {
-                                                                audio.pause();
-                                                                isPlay = 0;
-                                                            }
-                                                        }
-                                                        else {
-                                                            audio.src = url;
+                                                    for (j = 0; j < l; j++) {
+                                                        localStorage.setItem("mp4[" + j + "]", mp4List[j]);
+                                                    }
+                                                    if (isPlugin == "true") {
+                                                        window.open("http://" + location.host + "/_skin/html/mp4Player.html?now=" + now + "&isPlugin=true&lSize=" + l + "&local=" + location.href, '_blank', 'width=908,height=420,toolbar=no,status=no');
+                                                    }
+                                                    else {
+                                                        window.open("http://" + location.host + "/_skin/html/mp4Player.html?now=" + now + "&isPlugin=false&lSize=" + l + "&local=" + location.href, '_blank', 'width=800,height=450,toolbar=no,status=no');
+                                                    }
+                                                }
+                                                if (localStorage.getItem('mp4PlayerListOn') != null) {
+                                                    document.write("<td class='st mp4 ply' width='50px' onclick=\"openMp4Player(" + l + ", 'true')\"><center><span>▶</span></center></td><td class='mobileMp3'></td>");
+                                                }
+                                                else {
+                                                    document.write("<td class='st mp4 ply' width='50px' onclick=\"openMp4Player(" + l + ", 'false')\"><center><span>▶</span></center></td><td class='mobileMp3'></td>");
+                                                }
+
+                                            }
+                                            else if (isMp3 > -2 && isNotMp3 < -1) {
+                                                mp3Url = location.href + '$link'
+                                                mp3Url = mp3Url.replace(/%2d/g, '-');
+                                                mp3List[k] = '$link';
+                                                mp3List[k] = mp3List[k].replace(/%2d/g, '-');
+                                                k++;
+                                                function openMp3Player() {
+                                                    var j = 0;
+
+                                                    for (j = 0; j < 10000; j++) {
+                                                        localStorage.removeItem("mp3[" + j + "]");
+                                                    }
+                                                    for (j = 0; j < k; j++) {
+                                                        localStorage.setItem("mp3[" + j + "]", mp3List[j]);
+                                                    }
+                                                    for (j = 0; j < 3; j++) {
+                                                        localStorage.setItem("mp3Bg[" + j + "]", "http://" + location.host + "/_skin/images/mp3Bg" + (j + 1) + ".gif");
+                                                    }
+                                                    window.open("http://" + location.host + "/_skin/html/mp3Player.html?kSize=" + k + "&local=" + location.href + "&bgImg=" + imgList[0], '_blank', 'width=460,height=460,status=no,resizable=yes,scrollbars=yes');
+                                                }
+                                                function playPause(url) {
+                                                    if (audio.src == url) {
+                                                        if (isPlay == 0) {
                                                             audio.play();
                                                             isPlay = 1;
                                                         }
-                                                    }
-                                                    if (localStorage.getItem('mp3PlayerStartOn') != null) {
-                                                        document.write("<td class='st mp4 ply' width='50px' onclick=\"audio.pause(); openMp3Player()\"><center><span>♬</span></center></td>");
+                                                        else {
+                                                            audio.pause();
+                                                            isPlay = 0;
+                                                        }
                                                     }
                                                     else {
-                                                        document.write("<td class='st mp4 ply' width='50px' onclick=\"playPause('" + mp3Url + "')\"><center><span>♬</span></center></td>");
+                                                        audio.src = url;
+                                                        audio.play();
+                                                        isPlay = 1;
                                                     }
-                                                    document.write("<td class='mobileMp3Bg mobileMp3 ply' width='50px' onclick=\"playPause('" + mp3Url + "')\"><center><span><font size='4'>♬</font></span></center></td>");
                                                 }
-                                                else if (isImg > -8) {
-                                                    imgList[i] = '$link';
-                                                    imgList[i] = imgList[i].replace(/%2d/g, '-');
-                                                    i++;
-                                                    function openViewer(now) {
-                                                        var j = 0;
-                                                        for (j = 0; j < 10000; j++) {
-                                                            localStorage.removeItem("img[" + j + "]");
-                                                        }
-                                                        for (j = 0; j < i; j++) {
-                                                            localStorage.setItem("img[" + j + "]", imgList[j]);
-                                                        }
-                                                        if (now == 0 && localStorage.getItem('imgFullLoadOn') == null) {
-                                                            now = 1;
-                                                        }
-                                                        window.open("http://" + location.host + "/_skin/html/imageViewer.html?now=" + now + "&iSize=" + i + "&local=" + location.href, '_blank', 'width=460,height=800,status=no,resizable=yes,scrollbars=yes');
-
-                                                    }
-                                                    document.write("<td class='st mp4 ply' width='50px' onclick=\"openViewer(" + i + ");\"><center><span>✿</span></center></td>");
-                                                    document.write("<td class='mobileMp3Bg mobileMp3 ply' width='50px' onclick=\"openViewer(" + i + ")\"><center><span>✿</span></center></td>");
+                                                if (localStorage.getItem('mp3PlayerStartOn') != null) {
+                                                    document.write("<td class='st mp4 ply' width='50px' onclick=\"audio.pause(); openMp3Player()\"><center><span>♬</span></center></td>");
                                                 }
                                                 else {
-                                                    document.write("<td class='st' width='50px'></td><td class='mobileMp3'></td>");
+                                                    document.write("<td class='st mp4 ply' width='50px' onclick=\"playPause('" + mp3Url + "')\"><center><span>♬</span></center></td>");
                                                 }
-                                            </script>
-                                        </tr>
-                                        #end
-                                        #end
-                                        #if( $files ) #else
-                                        <tr>
-                                            <td colspan="5" style="text-align: center; height: 150px;">
-                                                폴더가 비었습니다.
-                                            </td>
-                                        </tr>
-                                        #end
-                                    </tbody>
+                                                document.write("<td class='mobileMp3Bg mobileMp3 ply' width='50px' onclick=\"playPause('" + mp3Url + "')\"><center><span><font size='4'>♬</font></span></center></td>");
+                                            }
+                                            else if (isImg > -8) {
+                                                imgList[i] = '$link';
+                                                imgList[i] = imgList[i].replace(/%2d/g, '-');
+                                                i++;
+                                                function openViewer(now) {
+                                                    var j = 0;
+                                                    for (j = 0; j < 10000; j++) {
+                                                        localStorage.removeItem("img[" + j + "]");
+                                                    }
+                                                    for (j = 0; j < i; j++) {
+                                                        localStorage.setItem("img[" + j + "]", imgList[j]);
+                                                    }
+                                                    if (now == 0 && localStorage.getItem('imgFullLoadOn') == null) {
+                                                        now = 1;
+                                                    }
+                                                    window.open("http://" + location.host + "/_skin/html/imageViewer.html?now=" + now + "&iSize=" + i + "&local=" + location.href, '_blank', 'width=460,height=800,status=no,resizable=yes,scrollbars=yes');
+
+                                                }
+                                                document.write("<td class='st mp4 ply' width='50px' onclick=\"openViewer(" + i + ");\"><center><span>✿</span></center></td>");
+                                                document.write("<td class='mobileMp3Bg mobileMp3 ply' width='50px' onclick=\"openViewer(" + i + ")\"><center><span>✿</span></center></td>");
+                                            }
+                                            else {
+                                                document.write("<td class='st' width='50px'></td><td class='mobileMp3'></td>");
+                                            }
+                                        </script>
+                                    </tr>
+                                    #end
+                                    #end
+                                    #if( $files ) #else
+                                    <tr>
+                                        <td colspan="5" style="text-align: center; height: 150px;">
+                                            폴더가 비었습니다.
+                                        </td>
+                                    </tr>
+                                    #end
+                                </tbody>
                             </table>
                         </form>
                         #end
                     </div>
                 </div>
-
                 <!-- 파일 리스트 end -->
-
-
             </div>
         </div>
     </div>
@@ -323,26 +317,7 @@
     <!-- 프로필과 홈페이지 정보를 표시할 부분 end -->
     <!-- 페이지 로딩이 끝나고 처리할 스크립트 start -->
     <script type="text/javascript">
-        document.getElementById('remove_basic_setting').outerHTML = "";
-        document.getElementById('remove_page_setting').outerHTML = "";
-        document.getElementById('remove_get_logo').outerHTML = "";
-
-        document.getElementById('manual').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/manual.html\';\">Manual</li>";
-        document.getElementById('setting').outerHTML = "<li onclick=\"location.href=\'http://" + location.host + "/_skin/html/setting.html\';\">Setting</li>";
-
-        getProfile();
-        setPageInfo();
-
-        var folderList = document.getElementsByName('dropScript');
-
-        for (var i = 0; i < folderList.length; i++) {
-            folderList[i].innerHTML = "";
-        }
-
-        for (var i = (folderList.length-1); i >= 0; i--) {
-            folderList[i].outerHTML = "";
-        }
-
+        endSideSetting();
     </script>
     <!-- 페이지 로딩이 끝나고 처리할 스크립트 end -->
 </body>
