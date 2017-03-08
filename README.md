@@ -29,7 +29,7 @@ FTP 서버 구축에 관한 자료는 [이쪽](http://senakriel.tistory.com/cate
 * `Image Viewer` - 같은 폴더 내의 이미지파일을 한 페이지에 모아서 볼 수 있는 기능입니다.
 
 ##기능 설명
-* `기능`(수정중) - [Wiki](https://) 참조
+* `Manual` - [Wiki](https://github.com/senakriel/Responsive_Berryz_Skin/wiki/Manual) 참조
 
 ##적용 방법
 * `How to use` - [Wiki](https://github.com/senakriel/Responsive_Berryz_Skin/wiki/How-to-use) 참조
