@@ -19,7 +19,8 @@
 * `File Name Change` - 공유된 파일의 이름을 변경할 수 있는 기능입니다.
 * `File Delete` - 공유된 파일을 디스크에서 삭제할 수 있는 기능입니다.
 
-  베리즈 웹쉐어의 기본기능과 관련된 부분 중, File을 다루는 부분을 스킨 제작 과정에서 누락시켰습니다. 이는 스킨을 서비스 제공자 관점으로 바라보아, File을 베리즈 웹쉐어 단에서 다루지 않고 FTP를 활용하여 다루는 것을 전제로 하기 때문입니다.
+  베리즈 웹쉐어의 기본기능과 관련된 부분 중, File을 다루는 부분을 스킨 제작 과정에서 누락시켰습니다.  
+  이는 스킨을 서비스 제공자 관점으로 바라보아, File을 베리즈 웹쉐어 단에서 다루지 않고 FTP를 활용하여 다루는 것을 전제로 하기 때문입니다.
 
   FTP 서버 구축에 관한 자료는 [이쪽](http://senakriel.tistory.com/category/Windows%2010/FTP%20Server)을 참조해 주시기 바랍니다.
 
@@ -42,6 +43,6 @@
 * `Berryz Webshare Skin Markup` - [Wiki](https://github.com/senakriel/Responsive_Berryz_Skin/wiki/Berryz-Webshare-Skin-Markup) 참조
 * `HTML5`, `CSS3`, `Javascript`
 
-<br /><br /><br />
+<br />
 
 문의 사항은 `senakriel@gmail.com`으로 연락해 주세요.
