@@ -13,9 +13,14 @@
     </script>
 </head>
 <body>
-    <noscript><div class="noscript">JavaScript가 꺼져 있습니다. 대부분의 기능을 사용할 수 없습니다.</div></noscript>
+    <div id="waiting_for_loading">
+        <div class="table-cell">
+            <h1 class="animated fadeInUp">Loading...</h1>
+            <div id="loading"></div>
+        </div>
+    </div>
     <!-- 메뉴와 파일을 표시할 부분 start -->
-    <div class="main">
+    <div class="main" id="main" style="display:none;">
         <div class="container">
             <div class="top">
                 <!-- 네비게이션바 start -->
@@ -85,39 +90,39 @@
                                             <font size="3" color="#5F5F5F">size</font>
                                         </th>
                                         <th class="st"></th>
-                                        <th></th> <!--------------------------------->
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     #foreach( $files ) #if ( $is_folder )
                                     <div name="dropScript">
                                         <script type="text/javascript">
-                                                var folderName = "$name";
-                                                var isHideFolder = false;
+                                            var folderName = "$name";
+                                            var isHideFolder = false;
 
-                                                if (folderName.indexOf("_") == 0) {
-                                                    isHideFolder = true;
-                                                }
-                                                else if (folderName.indexOf(hideKey) == 0) {
-                                                    if (localStorage.getItem('adminKey') == adminKey && localStorage.getItem('adminKeyOn') != null)
-                                                        folderName = folderName.substring(hideKey.length, folderName.length);
-                                                    else isHideFolder = true;
-                                                }
+                                            if (folderName.indexOf("_") == 0) {
+                                                isHideFolder = true;
+                                            }
+                                            else if (folderName.indexOf(hideKey) == 0) {
+                                                if (localStorage.getItem('adminKey') == adminKey && localStorage.getItem('adminKeyOn') != null)
+                                                    folderName = folderName.substring(hideKey.length, folderName.length);
+                                                else isHideFolder = true;
+                                            }
 
-                                                if (isHideFolder == true);
-                                                else {
-                                                    document.write("<tr class=\"folder\">\n");
-                                                    document.write("<td class=\"checkbox\" align=\"center\">\n");
-                                                    document.write("<label class=\"checkbox\"><input type='checkbox' name=\"checkbox#$link\" value=\"$link\" onclick='HighlightRow(\"$link\", this.checked)' /><i></i></label>\n");
-                                                    document.write("</td>\n");
-                                                    document.write("<td class=\"name meiryo\">\n");
-                                                    document.write("<a href=\"$link\"><div style=\"padding: 24px 0 22px;\">" + folderName + "</div></a>\n");
-                                                    document.write("</td>\n");
-                                                    document.write("<td class=\"size font-size11\" id=\"cvtsize[]\"></td>\n");
-                                                    document.write("<td class=\"st\"></td>\n");
-                                                    document.write("<td></td>\n"); //<!--------------------------------->
-                                                    document.write("</tr>\n");
-                                                }
+                                            if (isHideFolder == true);
+                                            else {
+                                                document.write("<tr class=\"folder\">\n");
+                                                document.write("<td class=\"checkbox\" align=\"center\">\n");
+                                                document.write("<label class=\"checkbox\"><input type='checkbox' name=\"checkbox#$link\" value=\"$link\" onclick='HighlightRow(\"$link\", this.checked)' /><i></i></label>\n");
+                                                document.write("</td>\n");
+                                                document.write("<td class=\"name meiryo\">\n");
+                                                document.write("<a href=\"$link\"><div style=\"padding: 24px 0 22px;\">" + folderName + "</div></a>\n");
+                                                document.write("</td>\n");
+                                                document.write("<td class=\"size font-size11\" id=\"cvtsize[]\"></td>\n");
+                                                document.write("<td class=\"st\"></td>\n");
+                                                document.write("<td></td>\n");
+                                                document.write("</tr>\n");
+                                            }
                                         </script>
                                     </div>
                                     #else
@@ -125,11 +130,13 @@
                                         <td class="checkbox" align="center">
                                             <label class="checkbox"><input type='checkbox' name="checkbox#$link" value="$link" onclick='HighlightRow("$link", this.checked)' /><i></i></label>
                                         </td>
-                                            <td class="name meiryo" style="padding-right:10px;">
-                                                <a href="$link"><div style="padding: 24px 0 22px;">
-                                                        $name
-                                                    </div></a>
-                                            </td>
+                                        <td class="name meiryo" style="padding-right:10px;">
+                                            <a href="$link">
+                                                <div style="padding: 24px 0 22px;">
+                                                    $name
+                                                </div>
+                                            </a>
+                                        </td>
                                         <td class="size" id="cvtsize[]">
                                             $size
                                         </td>
@@ -149,7 +156,7 @@
                                                         if (localStorage.getItem('mp4PlayerListOn') != null) {
                                                             isListStart = "true";
                                                         }
-                                                        document.write("<td class='st side ply' width='50px' onclick=\"openMp4Player(" + mp4Counter + ", " + isListStart + ")\"><center><span>▶</span></center></td><td></td>");//<!--------------------------------->
+                                                        document.write("<td class='st side ply' width='50px' onclick=\"openMp4Player(" + mp4Counter + ", " + isListStart + ")\"><center><span>▶</span></center></td><td></td>");
 
                                                         break;
                                                     case ".mp3":
@@ -181,7 +188,7 @@
                                                         document.write("<td class='mobile-side ply' width='50px' onclick=\"openViewer(" + imgCounter + ")\"><center><span>✿</span></center></td>");
                                                         break;
                                                     default:
-                                                        document.write("<td class='st' width='50px'></td><td></td>");//<!--------------------------------->
+                                                        document.write("<td class='st' width='50px'></td><td></td>");
                                                         break;
                                                 }
                                             </script>
@@ -208,7 +215,7 @@
     </div>
     <!-- 메뉴와 파일을 표시할 부분 end -->
     <!-- 프로필과 홈페이지 정보를 표시할 부분 start -->
-    <div class="extra">
+    <div class="extra" id="extra" style="display:none;">
         <div class="container">
             <!-- 프로필 start -->
             <div class="content-top">
@@ -230,7 +237,10 @@
                         이 홈페이지는 <a href="http://berryz.upnl.org/main.php/WebShare/LegalNotice/" target="_blank">Berryz WebShare</a>를 통해 구현된 개인 클라우드 공간입니다.
                     </p>
                     <p>
-                        본 홈페이지의 스킨은 <a href="https://github.com/senakriel" target="_blank">Senakriel</a>의 <a href="https://github.com/senakriel/Responsive_Berryz_Skin" target="_blank">Responsive_Berryz_Skin Project</a>를 통해 제공되었습니다. 자세한 사항은  <a href="https://github.com/senakriel/Responsive_Berryz_Skin/blob/master/README.md" target="_blank">README.md</a> 파일을 참고하세요.
+                        본 홈페이지의 스킨은 <a href="https://github.com/senakriel" target="_blank">Senakriel</a>의 <a href="https://github.com/senakriel/Responsive_Berryz_Skin" target="_blank">Responsive Berryz Skin Project</a>를 통해 제공되었습니다.
+                    </p>
+                    <p>
+                        자세한 사항은  <a href="https://github.com/senakriel/Responsive_Berryz_Skin/blob/master/README.md" target="_blank">README.md</a> 파일을 참고하세요.
                     </p>
                 </div>
                 <div class="col-md-4 about-in ex2">
@@ -257,8 +267,20 @@
                     <p id="blog"></p>
                     <p id="email"></p>
                 </div>
+                <div class="clearfix"></div>
             </div>
             <!-- 홈페이지 설명 end -->
+            <!-- 제작 정보 start-->
+            <div class="footer">
+                <div class="footer-bottom">
+                    <center>
+                        <p>
+                            - Responsive Berryz WebShare Skin by <a href="http://senakriel.tistory.com/" target="_blank">Senakriel</a> -
+                        </p>
+                    </center>
+                </div>
+            </div>
+            <!-- 제작 정보 end -->
         </div>
     </div>
     <!-- 프로필과 홈페이지 정보를 표시할 부분 end -->
