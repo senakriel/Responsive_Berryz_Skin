@@ -40,9 +40,9 @@
                                 <ul class="dropdown-menu menu-at" role="menu">
                                     <li onclick="OnPlugin('playlist.asx');"><a href="#">ASX Streaming</a></li>
                                     <li onclick="OnPlugin('RARdownload');"><a href="#">RAR Download</a></li>
-                                    <li onclick="openMp3Player();"><a href="#">Mp3 Player</a></li>
-                                    <li onclick="openMp4Player(1, 'true');"><a href="#">Mp4 Player</a></li>
-                                    <li onclick="openViewer(0);"><a href="#">Image Viewer</a></li>
+                                    <li onclick="(localStorage.getItem('mp3List') == '[]') ? alert('해당 페이지에 .mp3 파일이 없습니다!') : openMp3Player();"><a href="#">Mp3 Player</a></li>
+                                    <li onclick="(localStorage.getItem('mp4List') == '[]') ? alert('해당 페이지에 .mp4 파일이 없습니다!') : openMp4Player(1, 'true');"><a href="#">Mp4 Player</a></li>
+                                    <li onclick="(localStorage.getItem('imgList') == '[]') ? alert('해당 페이지에 이미지 파일이 없습니다!') : openViewer(0);"><a href="#">Image Viewer</a></li>
                                 </ul>
                             </li>
                             <li id="setting"></li>
@@ -85,14 +85,13 @@
                                             <font size="3" color="#5F5F5F">size</font>
                                         </th>
                                         <th class="st"></th>
-                                        <th class="mobileMp3"></th>
+                                        <th></th> <!--------------------------------->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     #foreach( $files ) #if ( $is_folder )
                                     <div name="dropScript">
                                         <script type="text/javascript">
-                                            function hideFolder() {
                                                 var folderName = "$name";
                                                 var isHideFolder = false;
 
@@ -116,10 +115,9 @@
                                                     document.write("</td>\n");
                                                     document.write("<td class=\"size font-size11\" id=\"cvtsize[]\"></td>\n");
                                                     document.write("<td class=\"st\"></td>\n");
-                                                    document.write("<td class=\"mobileMp3\"></td>\n");``
+                                                    document.write("<td></td>\n"); //<!--------------------------------->
                                                     document.write("</tr>\n");
                                                 }
-                                            } hideFolder();
                                         </script>
                                     </div>
                                     #else
@@ -135,57 +133,59 @@
                                         <td class="size" id="cvtsize[]">
                                             $size
                                         </td>
-                                        <script type="text/javascript">
-                                            var linkLocation = '$link';
-                                            var fileType = getExtensionOfFilename(linkLocation);
+                                        <div name="dropScript">
+                                            <script type="text/javascript">
+                                                var linkLocation = '$link';
+                                                var fileType = getExtensionOfFilename(linkLocation);
 
-                                            switch (fileType) {
-                                                case ".mp4":
-                                                    mp4List[mp4Counter] = '$link';
-                                                    mp4List[mp4Counter] = mp4List[mp4Counter].replace(/%2d/g, '-');
-                                                    mp4Counter++;
+                                                switch (fileType) {
+                                                    case ".mp4":
+                                                        mp4List[mp4Counter] = '$link';
+                                                        mp4List[mp4Counter] = mp4List[mp4Counter].replace(/%2d/g, '-');
+                                                        mp4Counter++;
 
-                                                    var isListStart = "false";
+                                                        var isListStart = "false";
 
-                                                    if (localStorage.getItem('mp4PlayerListOn') != null) {
-                                                        isListStart = "true";
-                                                    }
-                                                    document.write("<td class='st mp4 ply' width='50px' onclick=\"openMp4Player(" + mp4Counter + ", " + isListStart + ")\"><center><span>▶</span></center></td><td class='mobileMp3'></td>");
-                                                    
-                                                    break;
-                                                case ".mp3":
-                                                    mp3Url = location.href + '$link'
-                                                    mp3Url = mp3Url.replace(/%2d/g, '-');
-                                                    mp3List[mp3Counter] = '$link';
-                                                    mp3List[mp3Counter] = mp3List[mp3Counter].replace(/%2d/g, '-');
-                                                    mp3Counter++;
+                                                        if (localStorage.getItem('mp4PlayerListOn') != null) {
+                                                            isListStart = "true";
+                                                        }
+                                                        document.write("<td class='st side ply' width='50px' onclick=\"openMp4Player(" + mp4Counter + ", " + isListStart + ")\"><center><span>▶</span></center></td><td></td>");//<!--------------------------------->
 
-                                                    if (localStorage.getItem('mp3PlayerStartOn') != null) {
-                                                        document.write("<td class='st mp4 ply' width='50px' onclick=\"audio.pause(); openMp3Player()\"><center><span>♬</span></center></td>");
-                                                    }
-                                                    else {
-                                                        document.write("<td class='st mp4 ply' width='50px' onclick=\"playPause('" + mp3Url + "')\"><center><span>♬</span></center></td>");
-                                                    }
+                                                        break;
+                                                    case ".mp3":
+                                                        mp3Url = location.href + '$link'
+                                                        mp3Url = mp3Url.replace(/%2d/g, '-');
+                                                        mp3List[mp3Counter] = '$link';
+                                                        mp3List[mp3Counter] = mp3List[mp3Counter].replace(/%2d/g, '-');
+                                                        mp3Counter++;
 
-                                                    document.write("<td class='mobileMp3Bg mobileMp3 ply' width='50px' onclick=\"playPause('" + mp3Url + "')\"><center><span><font size='4'>♬</font></span></center></td>");
+                                                        if (localStorage.getItem('mp3PlayerStartOn') != null) {
+                                                            document.write("<td class='st side ply' width='50px' onclick=\"audio.pause(); openMp3Player()\"><center><span>♬</span></center></td>");
+                                                        }
+                                                        else {
+                                                            document.write("<td class='st side ply' width='50px' onclick=\"playPause('" + mp3Url + "')\"><center><span>♬</span></center></td>");
+                                                        }
 
-                                                    break;
-                                                case ".jpg":
-                                                case ".bmp":
-                                                case ".png":
-                                                case ".gif":
-                                                    imgList[imgCounter] = '$link';
-                                                    imgList[imgCounter] = imgList[imgCounter].replace(/%2d/g, '-');
-                                                    imgCounter++;
+                                                        document.write("<td class='mobile-side ply' width='50px' onclick=\"playPause('" + mp3Url + "')\"><center><span><font size='4'>♬</font></span></center></td>");
 
-                                                    document.write("<td class='st mp4 ply' width='50px' onclick=\"openViewer(" + imgCounter + ");\"><center><span>✿</span></center></td>");
-                                                    document.write("<td class='mobileMp3Bg mobileMp3 ply' width='50px' onclick=\"openViewer(" + imgCounter + ")\"><center><span>✿</span></center></td>");
-                                                    break;
-                                                default:
-                                                    document.write("<td class='st' width='50px'></td><td class='mobileMp3'></td>");
-                                                    break;
-                                            }
-                                        </script>
+                                                        break;
+                                                    case ".jpg":
+                                                    case ".bmp":
+                                                    case ".png":
+                                                    case ".gif":
+                                                        imgList[imgCounter] = '$link';
+                                                        imgList[imgCounter] = imgList[imgCounter].replace(/%2d/g, '-');
+                                                        imgCounter++;
+
+                                                        document.write("<td class='st side ply' width='50px' onclick=\"openViewer(" + imgCounter + ");\"><center><span>✿</span></center></td>");
+                                                        document.write("<td class='mobile-side ply' width='50px' onclick=\"openViewer(" + imgCounter + ")\"><center><span>✿</span></center></td>");
+                                                        break;
+                                                    default:
+                                                        document.write("<td class='st' width='50px'></td><td></td>");//<!--------------------------------->
+                                                        break;
+                                                }
+                                            </script>
+                                        </div>
                                     </tr>
                                     #end
                                     #end
