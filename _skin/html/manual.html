@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/userdata.js\"><\/script>");
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/setting.js\"><\/script>");
+    </script>
+
+    <script type="text/javascript">
+        //JavaScript
+        document.write("<script type=\"application/x-javascript\"> addEventListener(\"load\", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } <\/script>");
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/jquery.min.js\"><\/script>");
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/bootstrap.js\"><\/script>");
+
+        //CSS
+        document.write("<link href=\"http://" + location.host + "/_skin/css/bootstrap.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />");
+        document.write("<link href=\"http://" + location.host + "/_skin/css/style.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />");
+        document.write("<link href=\"http://" + location.host + "/_skin/css/animate.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />");
+
+        //Fonts
+        document.write("<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>");
+
+        setMetaData();
+        setThemeColorWithIcon();
+    </script>
+
+    <script type="text/javascript">
+        setCSS();
+        document.write("<style type=\"text/css\">\n");
+        document.write("table a:link {\n");
+        document.write("color: " + mainThemeColor + ";\n");
+        document.write("}\n");
+        document.write("\n");
+        document.write("table a:visited {\n");
+        document.write("color: " + mainThemeColor + ";\n");
+        document.write("}\n");
+        document.write("\n");
+        document.write("td {\n");
+        document.write("text-align: left;\n");
+        document.write("height: 150px;\n");
+        document.write("}\n");
+        document.write("\n");
+        document.write("p {\n");
+        document.write("margin: 0px 28px 10px 12px;\n");
+        document.write("}\n");
+        document.write("\n");
+        document.write("h4 {\n");
+        document.write("margin-top: 10px;\n");
+        document.write("font-weight: bold;\n");
+        document.write("}\n");
+        document.write("</style>\n");
+    </script>
+</head>
+
+<body>
+    <!-- 메뉴와 설명을 표시할 부분 start -->
+    <div class="main">
+        <div class="container">
+            <div class="top">
+                <!-- 네비게이션바 start -->
+                <nav class="navbar navbar-default menu">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <script type="text/javascript" id="remove_get_logo">
+                            getLogo();
+                        </script>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/">Home<span class="sr-only">(current)</span></a></li>
+                            <li id="manual"></li>
+                            <li class="dropdown">
+                                <a href="careers.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Plugin<span class="caret"></span></a>
+                                <ul class="dropdown-menu menu-at" role="menu">
+                                    <li onclick="window.open('https://github.com/senakriel/Responsive_Berryz_Skin', '_blank');"><a href="#">Skin Info</a></li>
+                                </ul>
+                            </li>
+                            <li id="setting"></li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- 네비게이션바 end -->
+                <!-- 설명 리스트 start -->
+                <div class="banner">
+                    <div id="wrap">
+                        <form id="pluginForm" method="POST" action="">
+                            <input type="HIDDEN" name="selectedFiles" value="">
+                        </form>
+                        <form id="fileListForm" style="margin:0px; padding:0px;">
+                            <input type="hidden" name="checkboxes" style="margin:0px;" />
+                            <table id="fileListTable" cellspacing="0" cellpadding="0">
+                                <thead>
+                                    <tr>
+                                        <th class="checkbox">
+                                        </th>
+                                        <th class="name">
+                                            <div id="location">
+                                                <script type="text/javascript">
+                                                    var i;
+
+                                                    function selectOptions(str1, str2, str3) {
+                                                        for (i = 0; i < document.getElementsByName("homepageManual").length; i++) {
+                                                            document.getElementsByName("homepageManual")[i].style.display = str1;
+                                                        }
+                                                        for (i = 0; i < document.getElementsByName("multimediaManual").length; i++) {
+                                                            document.getElementsByName("multimediaManual")[i].style.display = str2;
+                                                        }
+                                                        for (i = 0; i < document.getElementsByName("imgManual").length; i++) {
+                                                            document.getElementsByName("imgManual")[i].style.display = str3;
+                                                        }
+                                                    }
+                                                </script>
+                                                <a onclick="selectOptions('table-row', 'table-row', 'table-row');">All Manuals</a>
+                                                <a onclick="selectOptions('table-row', 'none', 'none');">General</a>
+                                                <a onclick="selectOptions('none', 'table-row', 'none');">Multimedia</a>
+                                                <a onclick="selectOptions('none', 'none', 'table-row');">Image Viewer</a>
+                                            </div>
+                                        </th>
+                                        <th class="size" style="color:#727272"></th>
+                                        <th class="st" colspan="2"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr name="homepageManual">
+                                        <td colspan="5" style="padding: 1.4em 2em 1.4em 3em;">
+                                            <h4>“세나 스토리지”</h4>
+                                            <br />
+                                            <p>
+                                                이 홈페이지는 <a href="http://berryz.upnl.org/main.php/WebShare/LegalNotice/" target="_blank" id="manualLink">Berryz WebShare</a>를 통해 구현된 개인 클라우드 공간입니다.
+                                            </p>
+                                            <p>
+                                                본 홈페이지의 스킨은 <a href="http://w3layouts.com/" target="_blank" id="manualLink">W3layouts</a>의 <a href="http://w3layouts.com/nakropol-ui-kit-a-flat-bootstrap-responsive-web-template/" target="_blank" id="manualLink">Nakropol Web Template</a>에 <a href="http://wallel.com/" target="_blank" id="manualLink">Wallel</a>님의 <a href="http://wallel.com/140" target="_blank" id="manualLink">반응형 v2.2</a> 스킨의 소스코드의 도움을 받아 제작되었습니다.
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr name="multimediaManual">
+                                        <td colspan="5" style="padding: 1.4em 2em 1.4em 3em;">
+                                            <h4>“동영상 스트리밍”</h4>
+                                            <br />
+                                            <p>
+                                                <b>Windows</b> - 'ASX Streaming' 플러그인을 사용하면 해당 동영상을 확장자에 구애받지 않고 스트리밍으로 감상할 수 있습니다. mp4 파일의 경우 파일 우측에 표시되는 재생 버튼을 클릭하여, 세나 스토리지에서 제공하는 웹 플레이어를 통해 영상을 감상하실 수도 있습니다.(자막이 표시되지 않을 경우 하단의 cc버튼을 눌러 주세요.)
+                                            </p>
+                                            <p class="no">
+                                                <b>Android</b> - <a href="https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad&hl=ko" target="_blank">MX Player</a>와 같은 동영상 재생 어플리케이션을 사용하시면 플러그인을 사용하지 않고 동영상을 스트리밍으로 감상하실 수 있습니다.
+                                            </p>
+                                            <p class="no">
+                                                <b>iPhone</b> - 기본 동영상 플레이어를 통하여 플러그인을 사용하지 않고 동영상을 스트리밍으로 감상하실 수 있습니다.(자막 미지원)
+                                            </p>
+                                            <p>
+                                                플러그인에서 Mp4 Player를 선택 시 같은 폴더 내에 있는 영상들을 동영상 우측에 리스트 형식으로 출력합니다. 옵션을 활용하여 개별 파일 아이콘 클릭 시에도 리스트를 출력하도록 할 수 있습니다.
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr name="multimediaManual">
+                                        <td colspan="5" style="padding: 1.4em 2em 1.4em 3em;">
+                                            <h4>“음악 플레이어”</h4>
+                                            <br />
+                                            <p>
+                                                Mp3 파일 우측에 표시되는 아이콘을 클릭하여 음악을 재생할 수 있습니다.
+                                            </p>
+                                            <p>
+                                                플러그인에서 Mp3 Player를 선택 시 같은 폴더 내에 있는 음악을 재생할 수 있는 플레이어를 사용하여 음악을 재생합니다. 옵션을 활용하여 아이콘 클릭 시 Mp3 Player를 열거나 Mp3 Player 사용 시 가사 지원 여부를 설정할 수 있습니다.
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr name="imgManual">
+                                        <td colspan="5" style="padding: 1.4em 2em 1.4em 3em;">
+                                            <h4>“이미지 뷰어”</h4>
+                                            <br />
+                                            <p>
+                                                이미지 파일 우측에 표시되는 아이콘을 클릭하여 Image Viewer를 사용하여 이미지를 감상할 수 있습니다. 상단의 전체보기/한장보기를 활용하여 같은 폴더 내의 이미지를 모두 표시/한 장만 표시 할 수 있습니다.
+                                            </p>
+                                            <p>
+                                                옵션을 활용하여 플러그인에서 Image Player를 선택 시 같은 폴더 내에 있는 이미지를 모두 출력하는 옵션을 활용할 수 있습니다.
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr name="homepageManual">
+                                        <td colspan="5" style="padding: 1.4em 2em 1.4em 3em;">
+                                            <h4>“사용자 지정 테마”</h4>
+                                            <br />
+                                            <p>
+                                                옵션을 통해 사용자 지정 테마를 활용하여 홈페이지를 이용하실 수 있습니다. 현재 사용자 테마 색상은
+                                                <script type="text/javascript">
+                                                    document.write("<bold style=\"color:" + mainThemeColor + ";\">");
+                                                    document.write(mainThemeColor);
+                                                    document.write("</bold>");
+                                                </script>
+                                                입니다.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+                <!-- 설명 리스트 end -->
+            </div>
+        </div>
+    </div>
+    <!-- 메뉴와 설명을 표시할 부분 end -->
+    <!-- 프로필을 표시할 부분 start -->
+    <div class="extra">
+        <div class="container">
+            <!-- 프로필 start -->
+            <div class="content-top">
+                <div class="top-grid-in">
+                    <div class="grid">
+                        <div id="profile"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 프로필 end -->
+            <!-- 제작 정보 start-->
+            <div class="footer">
+                <div class="footer-bottom">
+                    <center>
+                        <p>
+                            - Responsive Berryz WebShare Skin by <a href="http://senakriel.tistory.com/" target="_blank">Senakriel</a> -
+                        </p>
+                    </center>
+                </div>
+            </div>
+            <!-- 제작 정보 end -->
+        </div>
+    </div>
+    <!-- 프로필을 표시할 부분 end -->
+    <!-- 페이지 로딩이 끝나고 처리할 스크립트 start -->
+    <script type="text/javascript">
+        document.getElementById('remove_get_logo').outerHTML = "";
+
+        document.getElementById('manual').outerHTML = "<li><a href=\"http://" + location.host + "/_skin/html/manual.html\">Manual</li>";
+        document.getElementById('setting').outerHTML = "<li><a href=\"http://" + location.host + "/_skin/html/setting.html\">Setting</li>";
+
+        getProfile();
+    </script>
+    <!-- 페이지 로딩이 끝나고 처리할 스크립트 end -->
+</body>
+</html>

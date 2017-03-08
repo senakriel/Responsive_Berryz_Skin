@@ -1,0 +1,300 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/userdata.js\"><\/script>");
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/setting.js\"><\/script>");
+    </script>
+
+    <script type="text/javascript">
+        //JavaScript
+        document.write("<script type=\"application/x-javascript\"> addEventListener(\"load\", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } <\/script>");
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/jquery.min.js\"><\/script>");
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/bootstrap.js\"><\/script>");
+
+        //CSS
+        document.write("<link href=\"http://" + location.host + "/_skin/css/bootstrap.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />");
+        document.write("<link href=\"http://" + location.host + "/_skin/css/style.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />");
+        document.write("<link href=\"http://" + location.host + "/_skin/css/animate.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />");
+
+        //Fonts
+        document.write("<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>");
+
+        setMetaData();
+        setThemeColorWithIcon();
+    </script>
+
+    <script type="text/javascript">
+        setCSS();
+        document.write("<style type=\"text/css\">\n");
+        document.write("table tbody td {\n");
+        document.write("padding-right: 18px;\n");
+        document.write("}\n");
+        document.write("</style>\n");
+        document.head = document.head || document.getElementsByTagName('head')[0];
+    </script>
+</head>
+
+<body>
+    <!-- 메뉴와 옵션을 표시할 부분 start -->
+    <div class="main">
+        <div class="container">
+            <div class="top">
+                <!-- 네비게이션바 start -->
+                <nav class="navbar navbar-default menu">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <script type="text/javascript" id="remove_get_logo">
+                            getLogo();
+                        </script>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/">Home<span class="sr-only">(current)</span></a></li>
+                            <li id="manual"></li>
+                            <li class="dropdown">
+                                <a href="careers.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Plugin<span class="caret"></span></a>
+                                <ul class="dropdown-menu menu-at" role="menu">
+                                    <li onclick="setDefaultSetting();"><a href="#">설정 초기화</a></li>
+                                </ul>
+                            </li>
+                            <li id="setting"></li>
+                        </ul>
+                    </div>
+                </nav>
+                <!-- 네비게이션바 end -->
+                <!-- 옵션 리스트 start -->
+                <div class="banner">
+                    <div id="wrap">
+                        <form id="pluginForm" method="POST" action="">
+                            <input type="HIDDEN" name="selectedFiles" value="">
+                        </form>
+                        <form id="fileListForm" style="margin:0px; padding:0px;">
+                            <input type="hidden" name="checkboxes" style="margin:0px;" />
+                            <table id="fileListTable" cellspacing="0" cellpadding="0">
+                                <thead>
+                                    <tr>
+                                        <th class="checkbox">
+                                        </th>
+                                        <th class="name">
+                                            <div id="location">
+                                                <script type="text/javascript">
+                                                    var i;
+
+                                                    function selectOptions(str1, str2, str3, str4) {
+                                                        for (i = 0; i < document.getElementsByName("general").length; i++) {
+                                                            document.getElementsByName("general")[i].style.display = str1;
+                                                        }
+                                                        for (i = 0; i < document.getElementsByName("mp3Option").length; i++) {
+                                                            document.getElementsByName("mp3Option")[i].style.display = str2;
+                                                        }
+                                                        for (i = 0; i < document.getElementsByName("mp4Option").length; i++) {
+                                                            document.getElementsByName("mp4Option")[i].style.display = str3;
+                                                        }
+                                                        for (i = 0; i < document.getElementsByName("imgOption").length; i++) {
+                                                            document.getElementsByName("imgOption")[i].style.display = str4;
+                                                        }
+                                                    }
+                                                </script>
+                                                <a onclick="selectOptions('table-row', 'table-row', 'table-row', 'table-row');">All Options</a>
+                                                <a onclick="selectOptions('table-row', 'none', 'none', 'none');">General</a>
+                                                <a onclick="selectOptions('none', 'table-row', 'none', 'none');">Mp3</a>
+                                                <a onclick="selectOptions('none', 'none', 'table-row', 'none');">Mp4</a>
+                                                <a onclick="selectOptions('none', 'none', 'none', 'table-row');">Image Viewer</a>
+                                            </div>
+                                        </th>
+                                        <th class="size" style="color:#727272"></th>
+                                        <th class="st" colspan="2"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr class="file" name="general">
+                                        <td class="checkbox" align="center">
+                                            <label class="checkbox" id="option0">
+                                                <input type='checkbox' onclick='isCheckboxOnClick(this, 0);' /><i></i>
+                                            </label>
+                                        </td>
+                                        <td colspan="4" style="padding: 1.4em 3em 1.4em 0;">
+                                            <script type="text/javascript">
+                                                document.write("유저 테마 컬러 사용 : 홈페이지 테마를 접속하는 유저 설정에 맞게 변경합니다. (" + defaultColor + " -> <a id=\"userColor\" onclick=\"colorPicker();\" style=\"cursor: pointer;\">미정</a>)<br />")
+
+                                                var colorPart = document.getElementById("userColor");
+                                                var loadedColor = localStorage.getItem('userColor');
+
+                                                if (loadedColor == null)
+                                                    colorPart.innerHTML = "미정";
+                                                else
+                                                    colorPart.innerHTML = loadedColor;
+
+                                                function colorPicker() {
+                                                    var userAnswerColor = prompt("지정하고 싶은 컬러를 입력해 주세요\n(#FFFFFF 형식, 홈페이지 기본: " + defaultColor + ")", "");
+                                                    if (userAnswerColor != null) {
+                                                        var colorCheck = new Array();
+                                                        var isAllRight = true;
+                                                        var i;
+
+                                                        colorCheck[0] = userAnswerColor.substr(0, 1);
+                                                        colorCheck[7] = userAnswerColor.substr(7, 1);
+
+                                                        for (i = 1; i < 7; i++)
+                                                            colorCheck[i] = parseInt(userAnswerColor.substr(i, 1), 16);
+
+                                                        for (i = 1; i < 7; i++) {
+                                                            if (isNaN(colorCheck[i])) {
+                                                                isAllRight = false;
+                                                            }
+                                                        }
+                                                        if (colorCheck[0] != "#") {
+                                                            isAllRight = false;
+                                                        }
+
+                                                        if (colorCheck[7] != "") {
+                                                            isAllRight = false;
+                                                        }
+                                                        if (isAllRight) {
+                                                            localStorage.setItem('userColor', userAnswerColor);
+                                                            location.reload();
+                                                        }
+                                                        else {
+                                                            alert("입력하신 값이 올바르지 않습니다.");
+                                                        }
+                                                    }
+                                                }
+                                            </script>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="file" name="mp3Option">
+                                        <td class="checkbox" align="center">
+                                            <label class="checkbox" id="option1">
+                                                <input type='checkbox' onclick='isCheckboxOnClick(this, 1);' /><i></i>
+                                            </label>
+                                        </td>
+                                        <td colspan="4" style="padding: 1.4em 3em 1.4em 0;">
+                                            Mp3 파일 플레이어 바로 열기 : 우측의 아이콘을 클릭시 Mp3플레이어를 실행합니다. (기본설정: 해당파일 재생/일시정지)
+                                        </td>
+                                    </tr>
+
+                                    <tr class="file" name="mp4Option">
+                                        <td class="checkbox" align="center">
+                                            <label class="checkbox" id="option2">
+                                                <input type='checkbox' onclick='isCheckboxOnClick(this, 2);' /><i></i>
+                                            </label>
+                                        </td>
+                                        <td colspan="4" style="padding: 1.4em 3em 1.4em 0;">
+                                            Mp4 파일 재생 시 파일목록 함께 열기 : 같은 폴더 내의 동영상을 시청할 수 있는 리스트를 함께 출력합니다. (플러그인 메뉴에서 플레이어 실행 시 기본 제공)
+                                        </td>
+                                    </tr>
+
+                                    <tr class="file" name="imgOption">
+                                        <td class="checkbox" align="center">
+                                            <label class="checkbox" id="option3">
+                                                <input type='checkbox' onclick='isCheckboxOnClick(this, 3);' /><i></i>
+                                            </label>
+                                        </td>
+                                        <td colspan="4" style="padding: 1.4em 3em 1.4em 0;">
+                                            이미지 뷰어를 열 때 전체보기로 열기 : 플러그인에서 이미지뷰어를 선택할 때의 기능을 지정합니다. (기본설정: 한장보기)
+                                        </td>
+                                    </tr>
+
+                                    <tr class="file" name="mp3Option">
+                                        <td class="checkbox" align="center">
+                                            <label class="checkbox" id="option4">
+                                                <input type='checkbox' onclick='isCheckboxOnClick(this, 4);' /><i></i>
+                                            </label>
+                                        </td>
+                                        <td colspan="4" style="padding: 1.4em 3em 1.4em 0;">
+                                            Mp3 플레이어에서 가사 재생 : Mp3 플레이어에서 노래 재생시 가사를 지원합니다. (기본설정: 가사 숨김)
+                                        </td>
+                                    </tr>
+
+                                    <tr class="file" name="general">
+                                        <td class="checkbox" align="center">
+                                            <label class="checkbox" id="option5">
+                                                <input type='checkbox' onclick='isCheckboxOnClick(this, 5);' /><i></i>
+                                            </label>
+                                        </td>
+                                        <td colspan="4" style="padding: 1.4em 3em 1.4em 0;">
+                                            <script type="text/javascript">
+                                                document.write("파일 표시 키 지정 : 숨겨진 파일을 볼 수 있는 접두어를 설정합니다. (현재: \"<a id=\"nowKey\" onclick=\"keyIn();\" style=\"cursor: pointer;\">미정</a>\")<br />")
+
+                                                var keyPart = document.getElementById("nowKey");
+                                                var loadedKey = localStorage.getItem('adminKey');
+
+                                                if (loadedKey == null)
+                                                    keyPart.innerHTML = "미정";
+                                                else
+                                                    keyPart.innerHTML = loadedKey;
+
+                                                function keyIn() {
+                                                    var userAnswerKey = prompt("관리자 지정 키를 입력해 주세요", "");
+                                                    if (userAnswerKey != null) {
+                                                        if (userAnswerKey == "") {
+                                                            localStorage.removeItem('adminKey');
+                                                        }
+                                                        else {
+                                                            localStorage.setItem('adminKey', userAnswerKey);
+                                                        }
+                                                        location.reload();
+                                                    }
+                                                }
+                                            </script>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+                <!-- 옵션 리스트 end -->
+            </div>
+        </div>
+    </div>
+    <!-- 메뉴와 옵션을 표시할 부분 end -->
+    <!-- 프로필을 표시할 부분 start -->
+    <div class="extra">
+        <div class="container">
+            <!-- 프로필 start -->
+            <div class="content-top">
+                <div class="top-grid-in">
+                    <div class="grid">
+                        <div id="profile"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 프로필 end -->
+            <!-- 제작 정보 start-->
+            <div class="footer">
+                <div class="footer-bottom">
+                    <center>
+                        <p>
+                            - 2017 Berryz WebShare Skin by <a href="http://senakriel.tistory.com/" target="_blank">Senakriel</a> -
+                        </p>
+                    </center>
+                </div>
+            </div>
+            <!-- 제작 정보 end -->
+        </div>
+    </div>
+    <!-- 프로필을 표시할 부분 end -->
+    <!-- 페이지 로딩이 끝나고 처리할 스크립트 start -->
+    <script type="text/javascript">
+        document.getElementById('remove_get_logo').outerHTML = "";
+
+        document.getElementById('manual').outerHTML = "<li><a href=\"http://" + location.host + "/_skin/html/manual.html\">Manual</li>";
+        document.getElementById('setting').outerHTML = "<li><a href=\"http://" + location.host + "/_skin/html/setting.html\">Setting</li>";
+
+        getProfile();
+
+        toggleSelectBox();
+    </script>
+    <!-- 페이지 로딩이 끝나고 처리할 스크립트 end -->
+</body>
+</html>

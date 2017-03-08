@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>MP4 Player</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script type="text/javascript">
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/jwplayer/jwplayer.js\"><\/script>");
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/userdata.js\"><\/script>");
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/setting.js\"><\/script>");
+
+        document.write("<link href=\"http://" + location.host + "/_skin/css/mp4Player.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />");
+    </script>
+        <script language="JavaScript">
+            setThemeColorWithIcon();
+        </script>
+</head>
+<body>
+    <div id="dropScriipt">
+        <script language="JavaScript">
+            jwplayer.key = ""; // <--------- 이곳에 jwplayer6 활성화 key를 입력해 주세요!
+        </script>
+    </div>
+
+    <div class="container">
+        <div class="outer">
+            <div class="inner" style="padding-top:4px;">
+                <div id="myElement">
+                    <font color="white">로딩중...</font>
+                </div>
+                <script language="JavaScript">
+                    var mp4Root = getParameter('local');
+                    var selectedFile = getParameter('now') - 1;
+                    var isStartFromPlugin = getParameter('isPlugin');
+                    var arraySize = getParameter('lSize');
+                    var mp4Link = new Array();
+                    var mp4List = JSON.parse(localStorage.getItem("mp4List"));
+
+                    var i = 0;
+
+                    mp4Root = mp4Root.replace('#', '');
+                    for (i = 0; i < arraySize; i++) {
+                        mp4Link[i] = mp4Root + mp4List[i];
+                    }
+
+                    function loadVideo() {
+                        document.write("<script language=\"JavaScript\">\n");
+                        document.write("jwplayer(\"myElement\").setup({\n");
+                        document.write("width: \"100%\",\n");
+                        document.write("aspectratio: \"16:9\",\n");
+                        document.write("autostart: true,\n");
+
+
+                        //document.write("skin: \"스킨을 사용하고 싶을 경우 이 자리에 해당스킨을 기재해 주세요\",\n");
+
+
+                        document.write("fontfamily: 'Nanum Gothic',\n");
+                        document.write("captions: {\n");
+                        document.write("fontSize: 20,\n");
+                        document.write("backgroundOpacity: 0,\n");
+                        document.write("edgeStyle: 'uniform',\n");
+                        document.write("fontOpacity: 90\n");
+                        document.write("},\n");
+
+                        if (isStartFromPlugin == "true") {
+                            document.write("listbar: { \n");
+                            document.write("position: \"right\",\n");
+                            document.write("layout: \"basic\"\n");
+                            document.write("},\n");
+                        }
+
+                        document.write("abouttext: \"MP4 Player Player v1.0\",\n");
+                        document.write("aboutlink: \"#\",\n");
+
+                        document.write("playlist: [{\n");
+
+                        if (isStartFromPlugin == "true") {
+                            for (i = 0; ; i++) {
+                                document.write("    file: \"" + mp4Link[i] + "\",\n");
+                                document.write("    title: \"" + (i + 1) + "화\",\n");
+                                document.write("    tracks: [{\n");
+                                document.write("        file: \"" + mp4Link[i].replace('.mp4', '.srt') + "\"\n");
+                                document.write("    }]\n");
+                                if (i == arraySize - 1) break;
+                                document.write("},{\n");
+                            }
+                        }
+                        else {
+
+                            document.write("    file: \"" + mp4Link[selectedFile] + "\",\n");
+                            document.write("    tracks: [{\n");
+                            document.write("        file: \"" + mp4Link[selectedFile].replace('.mp4', '.srt') + "\"\n");
+                            document.write("    }]\n");
+                        }
+
+                        document.write("}]\n");
+                        document.write("\n");
+                        document.write("});\n");
+
+                        document.write("<\/script>\n");
+                    } loadVideo();
+                </script>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        document.getElementById("dropScriipt").innerHTML = "";
+    </script>
+</body>
+</html>

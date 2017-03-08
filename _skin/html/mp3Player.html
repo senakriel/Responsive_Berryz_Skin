@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html id="bgImg">
+<head>
+    <meta charset="UTF-8" />
+    <title>MP3 Player</title>
+    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=500, initial-scale=1">
+
+    <script type="text/javascript">
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/soundmanager2-jsmin.js\"><\/script>\n");
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/jquery.min.js\"><\/script>\n");
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/bar-ui.sena.js\"><\/script>\n");
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/userdata.js\"><\/script>");
+        document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/setting.js\"><\/script>");
+        document.write("\n");
+        document.write("<link href=\"http://" + location.host + "/_skin/css/bar-ui.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />");
+    </script>
+
+    <script language="JavaScript">
+        setThemeColorWithIcon();
+
+        var mp3Root = getParameter('local');
+        var arraySize = getParameter('kSize');
+        var cover = getParameter('bgImg');
+        var coverState = 0;
+        mp3Root = mp3Root.replace('#', '');
+
+        function Display() {
+            var element1 = document.getElementById("mp3Bar");
+            var element2 = document.getElementById("middleTable");
+            if (coverState == 0) {
+                $(element2).fadeOut("slow");
+                $(element1).fadeOut("slow");
+            }
+            else {
+                $(element1).fadeIn("slow");
+                $(element2).fadeIn("slow");
+            }
+            coverState = (coverState + 1) % 2;
+        }
+    </script>
+
+    <script type="text/javascript">
+        setMp3CSS();
+    </script>
+
+</head>
+<body style="margin: 0px;">
+    <div id="cover" onclick="Display();" style="width:100%; height:100%;">
+
+        <div id="middleTable">
+            <div id="middleCell">
+                <center>
+                    <div id="lrcArea"></div>
+                </center>
+            </div>
+        </div>
+
+        <textarea id="lyricsBox" readonly style="width:200px; height:200px; display:none;"></textarea>
+        <div id="bg" style="z-index:-1;">
+            <img id="imgCover" src="" alt="" style="width:50%; height:50%;" />
+        </div>
+
+    </div>
+    <div id="mp3Bar" class="sm2-bar-ui full-width fixed">
+
+        <div class="bd sm2-main-controls">
+
+            <div class="sm2-inline-texture"></div>
+            <div class="sm2-inline-gradient"></div>
+
+            <div class="sm2-inline-element sm2-button-element">
+                <div class="sm2-button-bd">
+                    <a href="#play" class="sm2-inline-button play-pause">Play / pause</a>
+                </div>
+            </div>
+
+            <div class="sm2-inline-element sm2-inline-status">
+
+                <div class="sm2-playlist">
+                    <div class="sm2-playlist-target">
+                        <noscript><p>JavaScript is required.</p></noscript>
+                    </div>
+                </div>
+
+                <div class="sm2-progress">
+                    <div class="sm2-row">
+                        <div class="sm2-inline-time">0:00</div>
+
+                        <div class="sm2-progress-bd">
+                            <div class="sm2-progress-track">
+                                <div class="sm2-progress-bar"></div>
+                                <div class="sm2-progress-ball"><div class="icon-overlay"></div></div>
+                            </div>
+                        </div>
+                        <div class="sm2-inline-duration">0:00</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="sm2-inline-element sm2-button-element sm2-volume">
+                <div class="sm2-button-bd">
+                    <span class="sm2-inline-button sm2-volume-control volume-shade"></span>
+                    <a href="#volume" class="sm2-inline-button sm2-volume-control">volume</a>
+                </div>
+            </div>
+
+            <div class="sm2-inline-element sm2-button-element">
+                <div class="sm2-button-bd">
+                    <a href="#prev" title="Previous" class="sm2-inline-button previous">&lt; previous</a>
+                </div>
+            </div>
+
+            <div class="sm2-inline-element sm2-button-element">
+                <div class="sm2-button-bd">
+                    <a href="#next" title="Next" class="sm2-inline-button next">&gt; next</a>
+                </div>
+            </div>
+
+            <div class="sm2-inline-element sm2-button-element">
+                <div class="sm2-button-bd">
+                    <a href="#repeat" title="Repeat playlist" class="sm2-inline-button repeat">&infin; repeat</a>
+                </div>
+            </div>
+
+            <div class="sm2-inline-element sm2-button-element sm2-menu">
+                <div class="sm2-button-bd">
+                    <a href="#menu" class="sm2-inline-button menu">menu</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bd sm2-playlist-drawer sm2-element">
+
+            <div class="sm2-inline-texture">
+                <div class="sm2-box-shadow"></div>
+            </div>
+
+            <div class="sm2-playlist-wrapper">
+                <script language="JavaScript">
+                    var i = 0;
+                    var mp3Name = "";
+                    var mp3List = JSON.parse(localStorage.getItem("mp3List"));
+
+                    document.write('<ul class="sm2-playlist-bd">');
+
+                    for (i = 0; i < arraySize; i++) {
+                        mp3Name = mp3List[i];
+                        mp3Name = mp3Name.replace(/.mp3/i, '');
+
+                        mp3Name = decodeURIComponent(mp3Name);
+                        document.write('<li><a href="' + mp3Root + mp3List[i] + '">' + mp3Name + '</a></li>');
+                    }
+
+                    document.write('</ul>');
+                    if (cover == "undefined") {
+                        var mp3BackGraundImage = JSON.parse(localStorage.getItem("mp3BackGraundImage"));
+                        document.all["imgCover"].src = mp3BackGraundImage[Math.floor(Math.random() * 3)];
+                    }
+                    else {
+                        document.all["imgCover"].src = mp3Root + cover;
+                    }
+                </script>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
