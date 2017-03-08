@@ -32,7 +32,7 @@ FTP 서버 구축에 관한 자료는 [이쪽](http://senakriel.tistory.com/cate
 * `기능`(수정중) - [Wiki](https://) 참조
 
 ##적용 방법
-* `사용법`(수정중) - [Wiki](https://) 참조
+* `How to use` - [Wiki](https://github.com/senakriel/Responsive_Berryz_Skin/wiki/How-to-use) 참조
 
 ##개발 환경
 * `Windows 10`
