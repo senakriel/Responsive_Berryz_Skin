@@ -12,6 +12,10 @@ html, body {
     background: #fff;
 }
 
+body {
+    min-width: 300px;
+}
+
     body a {
         transition: 0.5s all;
         -webkit-transition: 0.5s all;
