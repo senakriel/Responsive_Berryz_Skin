@@ -44,42 +44,43 @@ html, body {
             color: #fff;
         }
 
-.top_right{
-	float:right;
-	color: #ffffff;
-	margin-top:5px;
-}
-.top_right ul {
-    padding: 0;
-    list-style: none;
+.top_right {
+    float: right;
+    color: #ffffff;
+    margin-top: 5px;
 }
 
-    .top_right ul li {
-        display: inline-block;
-        margin-right: 10px;
+    .top_right ul {
+        padding: 0;
+        list-style: none;
     }
 
-        .top_right ul li:last-child {
-            margin-right: 0;
+        .top_right ul li {
+            display: inline-block;
+            margin-right: 10px;
         }
 
-        .top_right ul li a {
-            text-align: center;
-            padding: 0px 4px;
-            text-transform: uppercase;
-            font-size: 12px;
-            display: block;
-            color: #ffffff;
-            -webkit-transition: all 0.3s ease-in-out;
-            -moz-transition: all 0.3s ease-in-out;
-            -o-transition: all 0.3s ease-in-out;
-            transition: all 0.3s ease-in-out;
-        }
-
-            .top_right ul li a:hover {
-                color: #ffcc33;
-                text-decoration: none;
+            .top_right ul li:last-child {
+                margin-right: 0;
             }
+
+            .top_right ul li a {
+                text-align: center;
+                padding: 0px 4px;
+                text-transform: uppercase;
+                font-size: 12px;
+                display: block;
+                color: #ffffff;
+                -webkit-transition: all 0.3s ease-in-out;
+                -moz-transition: all 0.3s ease-in-out;
+                -o-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+            }
+
+                .top_right ul li a:hover {
+                    color: #ffcc33;
+                    text-decoration: none;
+                }
 
 span {
     cursor: pointer;
@@ -129,8 +130,6 @@ ul#function {
                 color: #00C78A;
             }
 
-
-
 @media (max-width:414px) {
     ul#function li a {
         font-size: 12px;
@@ -146,7 +145,6 @@ ul#function {
         padding: 0;
     }
 }
-
 
 @media (max-width:667px) {
     .logo h1 {
@@ -166,7 +164,6 @@ ul#function {
         margin: 0 5px;
     }
 }
-
 
 @media (min-width: 992px) {
     .container {

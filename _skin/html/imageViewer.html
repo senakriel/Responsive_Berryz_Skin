@@ -76,13 +76,13 @@
                 for (i = 0; i < arraySize; i++) {
                     aImg = aImg + "<img id='imgView' src=\"" + imgLink[i] + "\" onclik='getNextImg()' style='width:100%;height:auto; padding-bottom: 5px;' />";
                 }
-                document.getElementById("viewType").innerHTML = aImg + "<div class='clearfix'></div>";
+                document.getElementById("viewType").innerHTML = aImg;
                 document.getElementById("viewStyle").innerHTML = "<ul><li><a onclick='viewStyleChange()'>한장보기</a></li></ul>";
                 document.getElementById("navigation_bar").innerHTML = "<div class='container'><ul id='function'><li><a><span onclick='window.close();'>[ 닫기 ]</span></a></li></ul></div></div>";
                 vStyle = 1;
             }
             else {
-                document.getElementById("viewType").innerHTML = "<span onclick='getNextImg()'><img id='imgView' src=\"" + imgLink[nowImgIndex] + "\" onclik='getNextImg()' style='width:100%;height:auto;' /></span><div class='clearfix'></div>";
+                document.getElementById("viewType").innerHTML = "<span onclick='getNextImg()'><img id='imgView' src=\"" + imgLink[nowImgIndex] + "\" onclik='getNextImg()' style='width:100%;height:auto;' /></span>";
                 document.getElementById("viewStyle").innerHTML = "<ul><li><a onclick='viewStyleChange()'>전체보기</a></li></ul>";
                 document.getElementById("navigation_bar").innerHTML = "<div class='container'><ul id='function'><li><a><span onclick='getPreImg()'>이전</span></a></li><li><a id='page' onclick='viewList()'><span>error!</span></a></li><li><a><span onclick='getNextImg()'>다음</span></a></li></ul></div>";
                 thisPage();
@@ -100,7 +100,7 @@
                         iList = iList + "<li><a onclick='goToPage(" + i + ")'>" + decodeURIComponent(imgList[i]) + "</a></li>";
                     }
                 }
-                document.getElementById("viewType").innerHTML = "&nbsp;File List(바로가기)<br /><ul>" + iList + "</ul><div class='clearfix'></div>";
+                document.getElementById("viewType").innerHTML = "&nbsp;File List (바로가기)<br /><ul>" + iList + "</ul>";
                 document.getElementById("navigation_bar").innerHTML = "<div class='container'><ul id='function'><li><a><span onclick='viewList();'>[ 돌아가기 ]</span></a></li></ul></div></div>";
                 vList = 1;
             }
@@ -146,7 +146,6 @@
         <div class="container">
             <div class="view" id='viewType'>
                 <span onclick='getNextImg()'><img id='imgView' src='' onclik="getNextImg()" style="width:100%;height:auto;" /></span>
-                <div class="clearfix"> </div>
             </div>
         </div>
     </div>
