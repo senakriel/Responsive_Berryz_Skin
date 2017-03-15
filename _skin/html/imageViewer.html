@@ -7,7 +7,7 @@
 
     <script type="text/javascript">
         document.write("<link href=\"http://" + location.host + "/_skin/css/bootstrap.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />");
-        document.write("<link href=\"http://" + location.host + "/_skin/css/viewer.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />");
+        document.write("<link href=\"http://" + location.host + "/_skin/css/imageViewer.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />");
         document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/userdata.js\"><\/script>");
         document.write("<script type=\"text/javascript\" src=\"http://" + location.host + "/_skin/js/setting.js\"><\/script>");
 
@@ -78,13 +78,13 @@
                 }
                 document.getElementById("viewType").innerHTML = aImg + "<div class='clearfix'></div>";
                 document.getElementById("viewStyle").innerHTML = "<ul><li><a onclick='viewStyleChange()'>한장보기</a></li></ul>";
-                document.getElementById("foot").innerHTML = "<div class='container'><ul id='footer-links'><li><a><span onclick='window.close();'>[ 닫기 ]</span></a></li></ul></div></div>";
+                document.getElementById("navigation_bar").innerHTML = "<div class='container'><ul id='function'><li><a><span onclick='window.close();'>[ 닫기 ]</span></a></li></ul></div></div>";
                 vStyle = 1;
             }
             else {
                 document.getElementById("viewType").innerHTML = "<span onclick='getNextImg()'><img id='imgView' src=\"" + imgLink[nowImgIndex] + "\" onclik='getNextImg()' style='width:100%;height:auto;' /></span><div class='clearfix'></div>";
                 document.getElementById("viewStyle").innerHTML = "<ul><li><a onclick='viewStyleChange()'>전체보기</a></li></ul>";
-                document.getElementById("foot").innerHTML = "<div class='container'><ul id='footer-links'><li><a><span onclick='getPreImg()'>이전</span></a></li><li><a id='page' onclick='viewList()'><span>error!</span></a></li><li><a><span onclick='getNextImg()'>다음</span></a></li></ul></div>";
+                document.getElementById("navigation_bar").innerHTML = "<div class='container'><ul id='function'><li><a><span onclick='getPreImg()'>이전</span></a></li><li><a id='page' onclick='viewList()'><span>error!</span></a></li><li><a><span onclick='getNextImg()'>다음</span></a></li></ul></div>";
                 thisPage();
                 vStyle = 0;
             }
@@ -101,7 +101,7 @@
                     }
                 }
                 document.getElementById("viewType").innerHTML = "&nbsp;File List(바로가기)<br /><ul>" + iList + "</ul><div class='clearfix'></div>";
-                document.getElementById("foot").innerHTML = "<div class='container'><ul id='footer-links'><li><a><span onclick='viewList();'>[ 돌아가기 ]</span></a></li></ul></div></div>";
+                document.getElementById("navigation_bar").innerHTML = "<div class='container'><ul id='function'><li><a><span onclick='viewList();'>[ 돌아가기 ]</span></a></li></ul></div></div>";
                 vList = 1;
             }
             else {
@@ -140,20 +140,19 @@
                     </li>
                 </ul>
             </div>
-            <div class="clearfix"></div>
         </div>
     </div>
-    <div class="register">
+    <div class="main">
         <div class="container">
-            <div class="about_box" id='viewType'>
+            <div class="view" id='viewType'>
                 <span onclick='getNextImg()'><img id='imgView' src='' onclik="getNextImg()" style="width:100%;height:auto;" /></span>
                 <div class="clearfix"> </div>
             </div>
         </div>
     </div>
-    <div class="grid_3" id="foot">
+    <div class="navigation_bar" id="navigation_bar">
         <div class="container">
-            <ul id="footer-links">
+            <ul id="function">
                 <li><a><span onclick='getPreImg()'>이전</span></a></li>
                 <li><b><a id='page' onclick="viewList()"><span>error!</span></a></b></li>
                 <li><a><span onclick='getNextImg()'>다음</span></a></li>
