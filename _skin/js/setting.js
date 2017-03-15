@@ -186,47 +186,6 @@ function setCSS() {
     document.write(".dropdown-menu > li > a:focus {\n");
     document.write("background-color: " + lightColor + ";\n");
     document.write("}\n");
-
-    //페이지 로딩 애니메이션
-    document.write("#waiting_for_loading {\n");
-    document.write("position: fixed;\n");
-    document.write("width: 100%;\n");
-    document.write("height: 100%;\n");
-    document.write("z-index: 10;\n");
-    document.write("background-color: #1D1D1D;\n");
-    document.write("text-align: center;\n");
-    document.write("display: table;\n");
-    document.write("color: #fff;\n");
-    document.write("}\n");
-    document.write(".table-cell {\n");
-    document.write("display: table-cell;\n");
-    document.write("vertical-align: middle;\n");
-    document.write("}\n");
-    document.write("#waiting_for_loading h1 {\n");
-    document.write("font: 3em 'Roboto', sans-serif;\n");
-    document.write("margin-bottom: 40px;\n");
-    document.write("}\n");
-    document.write("#loading {\n");
-    document.write("display: inline-block;\n");
-    document.write("width: 50px;\n");
-    document.write("height: 50px;\n");
-    document.write("border: 3px solid rgba(255,255,255,.3);\n");
-    document.write("border-radius: 50%;\n");
-    document.write("border-top-color: #fff;\n");
-    document.write("animation: spin 1s ease-in-out infinite;\n");
-    document.write("-webkit-animation: spin 1s ease-in-out infinite;\n");
-    document.write("}\n");
-    document.write("@keyframes spin {\n");
-    document.write("to {\n");
-    document.write("-webkit-transform: rotate(360deg);\n");
-    document.write("}\n");
-    document.write("}\n");
-    document.write("@-webkit-keyframes spin {\n");
-    document.write("to {\n");
-    document.write("-webkit-transform: rotate(360deg);\n");
-    document.write("}\n");
-    document.write("}\n");
-
     document.write("</style>\n");
     /*-----------------------------------------------------------------------------------------------------------*/
 }
