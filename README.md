@@ -6,8 +6,6 @@
 
 따라서 최종 배포 버전인 `WebShare0.952Rev1187`를 기준으로, 사용자 편의성에 중점을 둔 스킨을 개발하고자 하였습니다.
 
-자세한 개발일지와 업데이트 정보는 [티스토리 블로그](http://senakriel.tistory.com/category/%EA%B0%9C%EC%9D%B8%ED%99%9C%EB%8F%99/%EC%B7%A8%EB%AF%B8%EA%B0%9C%EB%B0%9C)를 참조해 주시기 바랍니다.
-
 ##기능 설명
 * `Manual` - [Wiki](https://github.com/senakriel/Responsive_Berryz_Skin/wiki/Manual) 참조
 
